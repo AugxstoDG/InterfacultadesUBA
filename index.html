@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Interfacultades UBA</title>
+    <style>
+        /* Paleta UBA Deportes */
+        body { 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+            background-color: #0b1a2a; 
+            color: white; 
+            display: flex; 
+            height: 100vh; 
+        }
+        
+        /* Menú lateral izquierdo */
+        .sidebar { 
+            width: 280px; 
+            background-color: #06111d; 
+            padding: 20px; 
+            overflow-y: auto; 
+            border-right: 2px solid #1a365d; 
+        }
+        
+        .logo { 
+            font-size: 22px; 
+            font-weight: bold; 
+            margin-bottom: 40px; 
+            color: #ffffff; 
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        
+        .menu-item { 
+            display: block; 
+            padding: 12px 10px; 
+            color: #d1d1d1; 
+            text-decoration: none; 
+            border-bottom: 1px solid #1a365d; 
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        
+        .menu-item:hover { 
+            color: white; 
+            background-color: #1a365d; 
+            border-left: 5px solid #9e2a5b; 
+        }
+
+        .btn-reglamento {
+            display: block;
+            background-color: #9e2a5b; 
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        
+        .btn-reglamento:hover {
+            background-color: #7a1f45;
+        }
+
+        /* Contenido principal (derecha) */
+        .main-content { 
+            flex: 1; 
+            padding: 40px; 
+            overflow-y: auto; 
+            display: flex; 
+            justify-content: center; 
+        }
+        
+        .contenedor-central {
+            width: 100%;
+            max-width: 833px; 
+        }
+
+        .titulo-jornada {
+            color: #ffffff;
+            font-size: 22px;
+            text-align: center;
+            border-bottom: 3px solid #2a75d3;
+            padding-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Recuadros del Fixture */
+        .bloque-liga {
+            background-color: #06111d; 
+            border-radius: 6px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 1px solid #1a365d;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        
+        .titulo-liga {
+            background-color: #1a365d; 
+            color: white;
+            padding: 12px 15px;
+            font-size: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .iframe-fixture {
+            width: calc(100% + 10px); 
+            margin-left: -5px; 
+            border: none;
+            display: block;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">INTERFACULTADES UBA</div>
+        
+        <a href="#" class="menu-item">▶ INICIO</a>
+        <a href="#" class="menu-item">♟️ Ajedrez</a>
+        <a href="#" class="menu-item">🏀 Básquet Masculino</a>
+        <a href="f11.html" class="menu-item">⚽ Fútbol 11</a>
+        <a href="#" class="menu-item">👟 Futsal Femenino</a>
+        <a href="#" class="menu-item">👟 Futsal Masculino</a>
+        <a href="#" class="menu-item">🤾 Handball Femenino</a>
+        <a href="#" class="menu-item">🤾 Handball Masculino</a>
+        <a href="#" class="menu-item">🏑 Hockey Femenino</a>
+        <a href="#" class="menu-item">🎾 Tenis Masculino</a>
+        <a href="#" class="menu-item">🎾 Tenis Femenino</a>
+        <a href="#" class="menu-item">🏓 Tenis de Mesa</a>
+        <a href="#" class="menu-item">🏐 Vóley Femenino</a>
+        <a href="#" class="menu-item">🏐 Vóley Masculino</a>
+        <a href="#" class="menu-item">👥 Planteles</a>
+
+        <a href="#" target="_blank" class="btn-reglamento">📄 Ver Reglamento</a>
+    </div>
+
+    <div class="main-content">
+        
+        <div class="contenedor-central">
+            
+            <h1 class="titulo-jornada">Interfacultades UBA 2026 - Domingo 19 de Abril - Jornada 2</h1>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">🏀 BÁSQUET MASCULINO</div>
+                <iframe class="iframe-fixture" style="height: 147px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">⚽ FÚTBOL 11</div>
+                <iframe class="iframe-fixture" style="height: 210px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=779212162&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">👟 FUTSAL FEMENINO</div>
+                <iframe class="iframe-fixture" style="height: 127px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=1617084282&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">👟 FUTSAL MASCULINO</div>
+                <iframe class="iframe-fixture" style="height: 169px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=1196373664&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">🤾 HANDBALL FEMENINO</div>
+                <iframe class="iframe-fixture" style="height: 85px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=884088086&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">🤾 HANDBALL MASCULINO</div>
+                <iframe class="iframe-fixture" style="height: 64px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=718961828&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">🏑 HOCKEY FEMENINO</div>
+                <iframe class="iframe-fixture" style="height: 147px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=2139923978&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">🎾 TENIS FEMENINO</div>
+                <iframe class="iframe-fixture" style="height: 42px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=128161152&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">🎾 TENIS MASCULINO</div>
+                <iframe class="iframe-fixture" style="height: 127px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=2105325612&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">🏐 VÓLEY FEMENINO</div>
+                <iframe class="iframe-fixture" style="height: 127px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=674990934&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+            <div class="bloque-liga">
+                <div class="titulo-liga">🏐 VÓLEY MASCULINO</div>
+                <iframe class="iframe-fixture" style="height: 147px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=1911451396&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false"></iframe>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
