@@ -128,7 +128,7 @@
         </div>
     </div>
 
-    <script>
+<script>
         // Link directo y oficial de tu Google Sheets para el fixture
         const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1546057395&single=true&output=csv";
         
@@ -138,15 +138,19 @@
         async function cargarBaseDeDatos() {
             try {
                 const respuesta = await fetch(urlCSV);
-                if (!respuesta.ok) throw new Error("No se pudo conectar con la base de datos de Google Sheets.");
+                if (!respuesta.ok) throw new Error("No se pudo conectar con la base de datos.");
                 
                 const datos = await respuesta.text();
+                // Separamos por renglones y eliminamos la primera fila (encabezados)
                 const filas = datos.split('\n').slice(1); 
                 
                 todosLosPartidos = filas.filter(fila => fila.trim() !== '').map(fila => {
-                    const separador = fila.includes(';') ? ';' : ',';
-                    const columnas = fila.split(separador); 
+                    // LIMPIEZA EXTREMA: Sacamos comillas invisibles y saltos de línea ocultos (\r)
+                    const limpia = fila.replace(/\r/g, '').replace(/"/g, '');
+                    const separador = limpia.includes(';') ? ';' : ',';
+                    const columnas = limpia.split(separador); 
                     
+                    // Aseguramos que detecte el número de fecha correctamente
                     const fechaTexto = columnas[1] ? columnas[1] : "0";
                     const numFecha = parseInt(fechaTexto.replace(/\D/g, '')) || 1;
 
@@ -160,12 +164,13 @@
                     };
                 });
 
+                // Mostramos la fecha 1 al cargar
                 mostrarFecha(fechaActual);
 
             } catch (error) {
                 console.error("Detalle del error: ", error);
                 document.getElementById('contenedor-partidos').innerHTML = 
-                    "<p style='text-align:center; padding:20px; color:#ff4d4d;'>Error al cargar los datos. Verificá tu conexión a internet.</p>";
+                    "<p style='text-align:center; padding:20px; color:#ff4d4d;'>Error al leer el archivo. Revisá la consola.</p>";
             }
         }
 
@@ -176,14 +181,15 @@
             
             tituloFecha.innerText = `FECHA ${numeroFecha} ▼`;
 
+            // Filtramos la base de datos para buscar solo los que coincidan con el número
             const partidosDeEstaFecha = todosLosPartidos.filter(p => p.fecha === numeroFecha);
 
-            // CORRECCIÓN: Si es igual a 0, muestra el mensaje de que no hay partidos.
             if (partidosDeEstaFecha.length === 0) {
                 contenedor.innerHTML = "<p style='text-align:center; padding:20px; color:#6486a3;'>No hay partidos cargados para esta fecha.</p>";
                 return;
             }
 
+            // Dibujamos las cajas de los partidos
             partidosDeEstaFecha.forEach(p => {
                 const resL = (p.golL !== '' && p.golL !== undefined) ? p.golL : '-';
                 const resV = (p.golV !== '' && p.golV !== undefined) ? p.golV : '-';
@@ -200,6 +206,7 @@
             });
         }
 
+        // Función conectada a las flechitas del HTML
         function cambiarFecha(direccion) {
             if (direccion === 'atras' && fechaActual > 1) {
                 fechaActual--;
@@ -210,8 +217,8 @@
             }
         }
 
-        // Arrancamos el motor al cargar
         cargarBaseDeDatos();
     </script>
 </body>
 </html>
+
