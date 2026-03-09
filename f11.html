@@ -145,22 +145,25 @@
                 const filas = datos.split('\n').slice(1); 
                 
                 todosLosPartidos = filas.filter(fila => fila.trim() !== '').map(fila => {
-                    // LIMPIEZA EXTREMA: Sacamos comillas invisibles y saltos de línea ocultos (\r)
+                    // Limpieza para evitar errores con caracteres invisibles
                     const limpia = fila.replace(/\r/g, '').replace(/"/g, '');
                     const separador = limpia.includes(';') ? ';' : ',';
                     const columnas = limpia.split(separador); 
                     
-                    // Aseguramos que detecte el número de fecha correctamente
-                    const fechaTexto = columnas[1] ? columnas[1] : "0";
+                    // AHORA LA FECHA ESTÁ EN LA COLUMNA 4 (Índice 3 en programación)
+                    const fechaTexto = columnas[3] ? columnas[3] : "0";
                     const numFecha = parseInt(fechaTexto.replace(/\D/g, '')) || 1;
 
+                    // Actualizamos el "GPS" para que coincida con tu nuevo Excel
                     return {
-                        fecha: numFecha, 
-                        division: columnas[2] ? columnas[2].trim() : '',
-                        local: columnas[3] ? columnas[3].trim() : '',
-                        golL: columnas[4] ? columnas[4].trim() : '',
-                        golV: columnas[5] ? columnas[5].trim() : '',
-                        visitante: columnas[6] ? columnas[6].trim() : ''
+                        dia: columnas[1] ? columnas[1].trim() : '',      // Columna B
+                        hora: columnas[2] ? columnas[2].trim() : '',     // Columna C
+                        fecha: numFecha,                                 // Columna D
+                        division: columnas[4] ? columnas[4].trim() : '', // Columna E
+                        local: columnas[5] ? columnas[5].trim() : '',    // Columna F
+                        golL: columnas[6] ? columnas[6].trim() : '',     // Columna G
+                        golV: columnas[7] ? columnas[7].trim() : '',     // Columna H
+                        visitante: columnas[8] ? columnas[8].trim() : '' // Columna I
                     };
                 });
 
@@ -189,14 +192,17 @@
                 return;
             }
 
-            // Dibujamos las cajas de los partidos
+            // Dibujamos las cajas de los partidos sumando la hora que agregaste
             partidosDeEstaFecha.forEach(p => {
                 const resL = (p.golL !== '' && p.golL !== undefined) ? p.golL : '-';
                 const resV = (p.golV !== '' && p.golV !== undefined) ? p.golV : '-';
 
                 const htmlPartido = `
                     <div class="partido-fila">
-                        <div class="hora-dia" style="color:#9e2a5b; font-weight:bold;">Div ${p.division}</div>
+                        <div class="hora-dia" style="display:flex; flex-direction:column; justify-content:center;">
+                            <span style="color:#d1d1d1; font-weight:bold;">${p.hora}</span>
+                            <span style="color:#9e2a5b; font-size:11px; font-weight:bold;">Div ${p.division}</span>
+                        </div>
                         <div class="equipo" style="text-align: right; padding-right:10px;">${p.local}</div>
                         <div class="resultado">${resL} - ${resV}</div>
                         <div class="equipo" style="text-align: left; padding-left:10px;">${p.visitante}</div>
@@ -221,4 +227,5 @@
     </script>
 </body>
 </html>
+
 
