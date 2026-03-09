@@ -132,6 +132,33 @@
         // Link directo y oficial de tu Google Sheets para el fixture
         const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1546057395&single=true&output=csv";
         
+        // --- DICCIONARIO TRADUCTOR DE EQUIPOS ---
+        // Esto transforma los IDs cortos de tu Excel en nombres largos para la web
+        const nombresEquipos = {
+            "SOC-A": "Sociales A",
+            "SOC-B": "Sociales B",
+            "EXA-A": "Exactas A",
+            "EXA-B": "Exactas B",
+            "ECO-A": "Económicas A",
+            "ECO-B": "Económicas B",
+            "PSI-A": "Psicología",
+            "MED-A": "Medicina A",
+            "MED-B": "Medicina B",
+            "ODO-A": "Odontología",
+            "DER-A": "Derecho",
+            "FADU-A": "FADU A",
+            "FADU-B": "FADU B",
+            "CBC-A": "Ciclo Básico Común",
+            "ING-A": "Ingeniería",
+            "FILO-A": "Filosofía y Letras A",
+            "FILO-B": "Filosofía y Letras B",
+            "AGR-A": "Agronomía",
+            "FUBA-A": "FUBA",
+            "VET-A": "Veterinarias",
+            "FARM-A": "Farmacia"
+        };
+        // -----------------------------------------
+
         let todosLosPartidos = [];
         let fechaActual = 1; 
 
@@ -141,39 +168,38 @@
                 if (!respuesta.ok) throw new Error("No se pudo conectar con la base de datos.");
                 
                 const datos = await respuesta.text();
-                // Separamos por renglones y eliminamos la primera fila (encabezados)
                 const filas = datos.split('\n').slice(1); 
                 
                 todosLosPartidos = filas.filter(fila => fila.trim() !== '').map(fila => {
-                    // Limpieza para evitar errores con caracteres invisibles
                     const limpia = fila.replace(/\r/g, '').replace(/"/g, '');
                     const separador = limpia.includes(';') ? ';' : ',';
                     const columnas = limpia.split(separador); 
                     
-                    // AHORA LA FECHA ESTÁ EN LA COLUMNA 4 (Índice 3 en programación)
                     const fechaTexto = columnas[3] ? columnas[3] : "0";
                     const numFecha = parseInt(fechaTexto.replace(/\D/g, '')) || 1;
 
-                    // Actualizamos el "GPS" para que coincida con tu nuevo Excel
+                    const idLocal = columnas[5] ? columnas[5].trim() : '';
+                    const idVisitante = columnas[8] ? columnas[8].trim() : '';
+
                     return {
-                        dia: columnas[1] ? columnas[1].trim() : '',      // Columna B
-                        hora: columnas[2] ? columnas[2].trim() : '',     // Columna C
-                        fecha: numFecha,                                 // Columna D
-                        division: columnas[4] ? columnas[4].trim() : '', // Columna E
-                        local: columnas[5] ? columnas[5].trim() : '',    // Columna F
-                        golL: columnas[6] ? columnas[6].trim() : '',     // Columna G
-                        golV: columnas[7] ? columnas[7].trim() : '',     // Columna H
-                        visitante: columnas[8] ? columnas[8].trim() : '' // Columna I
+                        dia: columnas[1] ? columnas[1].trim() : '',      
+                        hora: columnas[2] ? columnas[2].trim() : '',     
+                        fecha: numFecha,                                 
+                        division: columnas[4] ? columnas[4].trim() : '', 
+                        // Aplicamos el traductor: si no encuentra el ID, deja lo que estaba escrito
+                        local: nombresEquipos[idLocal] || idLocal,    
+                        golL: columnas[6] ? columnas[6].trim() : '',     
+                        golV: columnas[7] ? columnas[7].trim() : '',     
+                        visitante: nombresEquipos[idVisitante] || idVisitante 
                     };
                 });
 
-                // Mostramos la fecha 1 al cargar
                 mostrarFecha(fechaActual);
 
             } catch (error) {
                 console.error("Detalle del error: ", error);
                 document.getElementById('contenedor-partidos').innerHTML = 
-                    "<p style='text-align:center; padding:20px; color:#ff4d4d;'>Error al leer el archivo. Revisá la consola.</p>";
+                    "<p style='text-align:center; padding:20px; color:#ff4d4d;'>Error al leer el archivo.</p>";
             }
         }
 
@@ -184,7 +210,6 @@
             
             tituloFecha.innerText = `FECHA ${numeroFecha} ▼`;
 
-            // Filtramos la base de datos para buscar solo los que coincidan con el número
             const partidosDeEstaFecha = todosLosPartidos.filter(p => p.fecha === numeroFecha);
 
             if (partidosDeEstaFecha.length === 0) {
@@ -192,7 +217,6 @@
                 return;
             }
 
-            // Dibujamos las cajas de los partidos sumando la hora que agregaste
             partidosDeEstaFecha.forEach(p => {
                 const resL = (p.golL !== '' && p.golL !== undefined) ? p.golL : '-';
                 const resV = (p.golV !== '' && p.golV !== undefined) ? p.golV : '-';
@@ -212,7 +236,6 @@
             });
         }
 
-        // Función conectada a las flechitas del HTML
         function cambiarFecha(direccion) {
             if (direccion === 'atras' && fechaActual > 1) {
                 fechaActual--;
@@ -227,5 +250,6 @@
     </script>
 </body>
 </html>
+
 
 
