@@ -24,7 +24,7 @@
         }
         .logo { font-size: 22px; font-weight: bold; margin-bottom: 40px; color: #ffffff; text-align: center; letter-spacing: 1px; }
         .menu-item { display: block; padding: 12px 10px; color: #d1d1d1; text-decoration: none; border-bottom: 1px solid #1a365d; font-size: 14px; font-weight: bold; transition: 0.2s; }
-        .menu-item:hover { color: white; background-color: #1a365d; border-left: 5px solid #9e2a5b; }
+        .menu-item:hover { color: white; background-color: #1a365d; border-left: 5px solid #e05a00; }
         
         /* Contenedor Principal */
         .main-content { 
@@ -35,7 +35,7 @@
             justify-content: center; 
         }
         .contenedor-central { width: 100%; max-width: 1100px; }
-        .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #e05a00; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; } /* Cambié el color del borde a naranja básquet */
+        .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #e05a00; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; }
 
         /* GRID DE DOS COLUMNAS */
         .layout-columnas { display: flex; gap: 30px; }
@@ -48,7 +48,7 @@
         .iframe-fixture { width: calc(100% + 10px); margin-left: -5px; border: none; display: block; background: transparent; }
 
         /* DISEÑO TIPO PROMIEDOS */
-        .fixture-header { background-color: #e05a00; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #a34200; } /* Cabecera naranja */
+        .fixture-header { background-color: #e05a00; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #a34200; } 
         .navegacion-fechas { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 16px; }
         .btn-flecha { background: none; border: none; color: white; font-size: 18px; cursor: pointer; font-weight: bold; }
         .btn-flecha:hover { color: #ff8533; }
@@ -93,13 +93,13 @@
                 <div class="columna-izquierda">
                     
                     <div class="bloque-liga">
-                        <div class="titulo-liga">📊 POSICIONES - BÁSQUET</div>
-                        <iframe class="iframe-fixture" style="height: 350px; border: none; width: 100%; overflow: hidden;" scrolling="no" src="LINK_TABLA_BASQUET&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;rm=minimal"></iframe>
+                        <div class="titulo-liga">📊 ZONA 1 - POSICIONES</div>
+                        <iframe class="iframe-fixture" style="height: 255px; border: none; width: 100%; overflow: hidden;" scrolling="no" src="LINK_TABLA_ZONA_1&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;rm=minimal"></iframe>
                     </div>
 
                     <div class="bloque-liga">
-                        <div class="titulo-liga">📊 DIVISIÓN B (SI APLICA)</div>
-                        <iframe class="iframe-fixture" style="height: 350px; border: none; width: 100%; overflow: hidden;" scrolling="no" src="LINK_TABLA_BASQUET_B&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;rm=minimal"></iframe>
+                        <div class="titulo-liga">📊 ZONA 2 - POSICIONES</div>
+                        <iframe class="iframe-fixture" style="height: 255px; border: none; width: 100%; overflow: hidden;" scrolling="no" src="LINK_TABLA_ZONA_2&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;rm=minimal"></iframe>
                     </div>
 
                 </div>
@@ -132,7 +132,7 @@
         // ACÁ VAS A PEGAR EL LINK CSV DE TU PESTAÑA DE PARTIDOS DE BÁSQUET
         const urlCSV = "LINK_CSV_FIXTURE_BASQUET";
         
-        // Diccionario para Básquet (Podés borrar o agregar según quiénes presenten equipo)
+        // Diccionario para Básquet
         const nombresEquipos = {
             "SOC": "Sociales",
             "EXA": "Exactas",
@@ -166,7 +166,6 @@
                     const separador = limpia.includes(';') ? ';' : ',';
                     const columnas = limpia.split(separador); 
                     
-                    // Asumiendo que vas a usar la misma estructura de columnas que en Fútbol
                     const fechaTexto = columnas[3] ? columnas[3] : "0";
                     const numFecha = parseInt(fechaTexto.replace(/\D/g, '')) || 1;
 
@@ -177,7 +176,7 @@
                         dia: columnas[1] ? columnas[1].trim() : '',      
                         hora: columnas[2] ? columnas[2].trim() : '',     
                         fecha: numFecha,                                 
-                        division: columnas[4] ? columnas[4].trim() : '', 
+                        zona: columnas[4] ? columnas[4].trim() : '', 
                         local: nombresEquipos[idLocal] || idLocal,    
                         golL: columnas[6] ? columnas[6].trim() : '',     
                         golV: columnas[7] ? columnas[7].trim() : '',     
@@ -216,7 +215,7 @@
                     <div class="partido-fila">
                         <div class="hora-dia" style="display:flex; flex-direction:column; justify-content:center;">
                             <span style="color:#d1d1d1; font-weight:bold;">${p.hora}</span>
-                            <span style="color:#e05a00; font-size:11px; font-weight:bold;">Div ${p.division}</span>
+                            <span style="color:#e05a00; font-size:11px; font-weight:bold;">Zona ${p.zona}</span>
                         </div>
                         <div class="equipo" style="text-align: right; padding-right:10px;">${p.local}</div>
                         <div class="resultado">${resL} - ${resV}</div>
