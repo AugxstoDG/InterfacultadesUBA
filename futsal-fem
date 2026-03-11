@@ -77,8 +77,13 @@
                 <div class="columna-izquierda">
                     
                     <div class="bloque-liga">
-                        <div class="titulo-liga">📊 TABLA DE POSICIONES</div>
-                        <iframe class="iframe-fixture" style="height: 400px; border: none; width: 100%; overflow: hidden;" scrolling="no" src="LINK_TABLA_FUTSAL_FEM&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;rm=minimal"></iframe>
+                        <div class="titulo-liga">📊 DIVISIÓN A - POSICIONES</div>
+                        <iframe class="iframe-fixture" style="height: 250px; border: none; width: 100%; overflow: hidden;" scrolling="no" src="LINK_TABLA_FUTSAL_FEM_A&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;rm=minimal"></iframe>
+                    </div>
+
+                    <div class="bloque-liga">
+                        <div class="titulo-liga">📊 DIVISIÓN B - POSICIONES</div>
+                        <iframe class="iframe-fixture" style="height: 250px; border: none; width: 100%; overflow: hidden;" scrolling="no" src="LINK_TABLA_FUTSAL_FEM_B&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;rm=minimal"></iframe>
                     </div>
 
                 </div>
@@ -222,8 +227,7 @@
                 const resL = (p.golL !== '' && p.golL !== undefined) ? p.golL : '-';
                 const resV = (p.golV !== '' && p.golV !== undefined) ? p.golV : '-';
                 
-                // Si le llegás a poner zona/división, la muestra, si no queda vacío
-                const textoZona = p.zona ? `<span style="color:#8e44ad; font-size:11px; font-weight:bold;">${p.zona}</span>` : '';
+                const textoZona = p.zona ? `<span style="color:#8e44ad; font-size:11px; font-weight:bold;">Div ${p.zona}</span>` : '';
 
                 const htmlPartido = `
                     <div class="partido-fila">
