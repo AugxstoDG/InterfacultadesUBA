@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Interfacultades 2026 - Handball Femenino</title>
+    <style>
+        /* Paleta UBA Deportes */
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #0b1a2a; color: white; display: flex; height: 100vh; }
+        
+        /* Menú Lateral */
+        .sidebar { width: 280px; background-color: #06111d; padding: 20px; overflow-y: auto; border-right: 2px solid #1a365d; }
+        .logo { font-size: 22px; font-weight: bold; margin-bottom: 40px; color: #ffffff; text-align: center; letter-spacing: 1px; }
+        .menu-item { display: block; padding: 12px 10px; color: #d1d1d1; text-decoration: none; border-bottom: 1px solid #1a365d; font-size: 14px; font-weight: bold; transition: 0.2s; }
+        .menu-item:hover { color: white; background-color: #1a365d; border-left: 5px solid #27ae60; }
+        .btn-reglamento { display: block; background-color: #9e2a5b; color: white; text-align: center; padding: 15px; margin-top: 40px; margin-bottom: 20px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.2s; }
+        .btn-reglamento:hover { background-color: #7a1f45; }
+        
+        /* Contenedor Principal */
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; display: flex; justify-content: center; }
+        .contenedor-central { width: 100%; max-width: 1100px; }
+        .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #27ae60; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; }
+
+        /* GRID DE DOS COLUMNAS */
+        .layout-columnas { display: flex; gap: 30px; }
+        .columna-izquierda { flex: 1; display: flex; flex-direction: column; gap: 25px; }
+        .columna-derecha { flex: 1; }
+
+        /* Estilos de las cajas */
+        .bloque-liga { background-color: #06111d; border-radius: 6px; overflow: hidden; border: 1px solid #1a365d; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .titulo-liga { background-color: #1a365d; color: white; padding: 12px 15px; font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .iframe-fixture { width: calc(100% + 10px); margin-left: -5px; border: none; display: block; background: transparent; }
+
+        /* FIXTURE INTERACTIVO CON ACENTO VERDE */
+        .fixture-header { background-color: #27ae60; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #1e8449; }
+        .navegacion-fechas { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 16px; }
+        .btn-flecha { background: none; border: none; color: white; font-size: 18px; cursor: pointer; font-weight: bold; }
+        .btn-flecha:hover { color: #abebc6; }
+        .partido-fila { display: flex; justify-content: space-between; padding: 12px 15px; border-bottom: 1px solid #1a365d; font-size: 14px; }
+        .partido-fila:last-child { border-bottom: none; }
+        .equipo { flex: 1; text-align: center; font-weight: bold; }
+        .hora-dia { width: 60px; color: #8fa6ba; font-size: 13px; text-align: left; }
+        .resultado { width: 50px; text-align: center; font-weight: bold; background-color: #1a365d; border-radius: 4px; padding: 2px 0;}
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">INTERFACULTADES UBA</div>
+        
+        <a href="index.html" class="menu-item">▶ INICIO</a>
+        <a href="#" class="menu-item">♟️ Ajedrez</a>
+        <a href="basquet.html" class="menu-item">🏀 Básquet Masculino</a>
+        <a href="f11.html" class="menu-item">⚽ Fútbol 11</a>
+        <a href="futsal-fem.html" class="menu-item">👟 Futsal Femenino</a>
+        <a href="futsal-masc.html" class="menu-item">👟 Futsal Masculino</a>
+        <a href="handball-fem.html" class="menu-item" style="color: white; background-color: #1a365d; border-left: 5px solid #27ae60;">🤾 Handball Femenino</a>
+        <a href="#" class="menu-item">🤾 Handball Masculino</a>
+        <a href="#" class="menu-item">🏑 Hockey Femenino</a>
+        <a href="#" class="menu-item">🎾 Tenis Masculino</a>
+        <a href="#" class="menu-item">🎾 Tenis Femenino</a>
+        <a href="#" class="menu-item">🏓 Tenis de Mesa</a>
+        <a href="#" class="menu-item">🏐 Vóley Femenino</a>
+        <a href="#" class="menu-item">🏐 Vóley Masculino</a>
+        <a href="#" class="menu-item">👥 Planteles</a>
+
+        <a href="#" target="_blank" class="btn-reglamento">📄 Ver Reglamento</a>
+    </div>
+
+    <div class="main-content">
+        <div class="contenedor-central">
+            
+            <h1 class="titulo-jornada">Interfacultades 2026 - Handball Femenino</h1>
+
+            <div class="layout-columnas">
+                
+                <div class="columna-izquierda">
+                    
+                    <div class="bloque-liga">
+                        <div class="titulo-liga">📊 TABLA DE POSICIONES GENERAL</div>
+                        <iframe class="iframe-fixture" style="height: 400px; border: none; width: 100%; overflow: hidden;" scrolling="no" src="LINK_TABLA_HANDBALL_FEM&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;rm=minimal"></iframe>
+                    </div>
+
+                </div>
+
+                <div class="columna-derecha">
+                    
+                    <div class="bloque-liga">
+                        <div class="fixture-header">
+                            <div>FIXTURE HANDBALL FEMENINO</div>
+                            <div class="navegacion-fechas">
+                                <button class="btn-flecha" onclick="cambiarFecha('atras')">❮</button>
+                                <span id="titulo-fecha-actual">FECHA 1 ▼</span>
+                                <button class="btn-flecha" onclick="cambiarFecha('adelante')">❯</button>
+                            </div>
+                        </div>
+                        
+                        <div id="contenedor-partidos">
+                            <p style="text-align:center; padding:30px; color:#6486a3;">Cargando partidos...</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // ACÁ VAS A PEGAR EL LINK CSV DE TU PESTAÑA DE PARTIDOS DE HANDBALL FEMENINO
+        const urlCSV = "LINK_CSV_FIXTURE_HANDBALL_FEM";
+        
+        // --- DICCIONARIO MAESTRO DE EQUIPOS ---
+        const nombresEquipos = {
+            "AGRO": "AGRONOMÍA",
+            "AGRO-A": "AGRONOMÍA A",
+            "AGRO-B": "AGRONOMÍA B",
+            "CBC": "CBC",
+            "CBC-A": "CBC A",
+            "CBC-B": "CBC B",
+            "DER": "DERECHO",
+            "DER-A": "DERECHO A",
+            "DER-B": "DERECHO B",
+            "ECO": "ECONÓMICAS",
+            "ECO-A": "ECONÓMICAS A",
+            "ECO-B": "ECONÓMICAS B",
+            "EXA": "EXACTAS",
+            "EXA-A": "EXACTAS A",
+            "EXA-B": "EXACTAS B",
+            "FADU": "FADU",
+            "FADU-A": "FADU A",
+            "FADU-B": "FADU B",
+            "FARM": "FARMACIA",
+            "FARM-A": "FARMACIA A",
+            "FARM-B": "FARMACIA B",
+            "FILO": "FILOSOFÍA Y LETRAS",
+            "FILO-A": "FILOSOFÍA Y LETRAS A",
+            "FILO-B": "FILOSOFÍA Y LETRAS B",
+            "FUBA": "FUBA",
+            "FUBA-A": "FUBA A",
+            "FUBA-B": "FUBA B",
+            "ING": "INGENIERÍA",
+            "ING-A": "INGENIERÍA A",
+            "ING-B": "INGENIERÍA B",
+            "MED": "MEDICINA",
+            "MED-A": "MEDICINA A",
+            "MED-B": "MEDICINA B",
+            "ODO": "ODONTOLOGÍA",
+            "ODO-A": "ODONTOLOGÍA A",
+            "ODO-B": "ODONTOLOGÍA B",
+            "PSI": "PSICOLOGÍA",
+            "PSI-A": "PSICOLOGÍA A",
+            "PSI-B": "PSICOLOGÍA B",
+            "SOC": "SOCIALES",
+            "SOC-A": "SOCIALES A",
+            "SOC-B": "SOCIALES B",
+            "VET": "VETERINARIAS",
+            "VET-A": "VETERINARIAS A",
+            "VET-B": "VETERINARIAS B"
+        };
+        // -----------------------------------------
+
+        let todosLosPartidos = [];
+        let fechaActual = 1; 
+
+        async function cargarBaseDeDatos() {
+            try {
+                const respuesta = await fetch(urlCSV);
+                if (!respuesta.ok) throw new Error("No se pudo conectar con la base de datos.");
+                
+                const datos = await respuesta.text();
+                const filas = datos.split('\n').slice(1); 
+                
+                todosLosPartidos = filas.filter(fila => fila.trim() !== '').map(fila => {
+                    const limpia = fila.replace(/\r/g, '').replace(/"/g, '');
+                    const separador = limpia.includes(';') ? ';' : ',';
+                    const columnas = limpia.split(separador); 
+                    
+                    const fechaTexto = columnas[3] ? columnas[3] : "0";
+                    const numFecha = parseInt(fechaTexto.replace(/\D/g, '')) || 1;
+
+                    const idLocal = columnas[5] ? columnas[5].trim() : '';
+                    const idVisitante = columnas[8] ? columnas[8].trim() : '';
+
+                    return {
+                        dia: columnas[1] ? columnas[1].trim() : '',      
+                        hora: columnas[2] ? columnas[2].trim() : '',     
+                        fecha: numFecha,                                 
+                        zona: columnas[4] ? columnas[4].trim() : '', 
+                        local: nombresEquipos[idLocal] || idLocal,    
+                        golL: columnas[6] ? columnas[6].trim() : '',     
+                        golV: columnas[7] ? columnas[7].trim() : '',     
+                        visitante: nombresEquipos[idVisitante] || idVisitante 
+                    };
+                });
+
+                mostrarFecha(fechaActual);
+
+            } catch (error) {
+                console.error("Detalle del error: ", error);
+                document.getElementById('contenedor-partidos').innerHTML = 
+                    "<p style='text-align:center; padding:20px; color:#ff4d4d;'>Esperando datos de la hoja de cálculo...</p>";
+            }
+        }
+
+        function mostrarFecha(numeroFecha) {
+            const contenedor = document.getElementById('contenedor-partidos');
+            const tituloFecha = document.getElementById('titulo-fecha-actual');
+            contenedor.innerHTML = ''; 
+            
+            tituloFecha.innerText = `FECHA ${numeroFecha} ▼`;
+
+            const partidosDeEstaFecha = todosLosPartidos.filter(p => p.fecha === numeroFecha);
+
+            if (partidosDeEstaFecha.length === 0) {
+                contenedor.innerHTML = "<p style='text-align:center; padding:20px; color:#6486a3;'>No hay partidos cargados para esta fecha.</p>";
+                return;
+            }
+
+            partidosDeEstaFecha.forEach(p => {
+                const resL = (p.golL !== '' && p.golL !== undefined) ? p.golL : '-';
+                const resV = (p.golV !== '' && p.golV !== undefined) ? p.golV : '-';
+                
+                const htmlPartido = `
+                    <div class="partido-fila">
+                        <div class="hora-dia" style="display:flex; flex-direction:column; justify-content:center;">
+                            <span style="color:#d1d1d1; font-weight:bold;">${p.hora}</span>
+                        </div>
+                        <div class="equipo" style="text-align: right; padding-right:10px;">${p.local}</div>
+                        <div class="resultado">${resL} - ${resV}</div>
+                        <div class="equipo" style="text-align: left; padding-left:10px;">${p.visitante}</div>
+                    </div>
+                `;
+                contenedor.innerHTML += htmlPartido;
+            });
+        }
+
+        function cambiarFecha(direccion) {
+            if (direccion === 'atras' && fechaActual > 1) {
+                fechaActual--;
+                mostrarFecha(fechaActual);
+            } else if (direccion === 'adelante') {
+                fechaActual++;
+                mostrarFecha(fechaActual);
+            }
+        }
+
+        cargarBaseDeDatos();
+    </script>
+</body>
+</html>
