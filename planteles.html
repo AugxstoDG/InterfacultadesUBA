@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Interfacultades 2026 - Planteles</title>
+    <style>
+        /* Paleta UBA Deportes */
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #0b1a2a; color: white; display: flex; height: 100vh; }
+        
+        /* Menú Lateral */
+        .sidebar { width: 280px; background-color: #06111d; padding: 20px; overflow-y: auto; border-right: 2px solid #1a365d; flex-shrink: 0; }
+        .logo { font-size: 22px; font-weight: bold; margin-bottom: 40px; color: #ffffff; text-align: center; letter-spacing: 1px; }
+        .menu-item { display: block; padding: 12px 10px; color: #d1d1d1; text-decoration: none; border-bottom: 1px solid #1a365d; font-size: 14px; font-weight: bold; transition: 0.2s; }
+        .menu-item:hover { color: white; background-color: #1a365d; border-left: 5px solid #2ecc71; }
+        .btn-reglamento { display: block; background-color: #9e2a5b; color: white; text-align: center; padding: 15px; margin-top: 40px; margin-bottom: 20px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.2s; }
+        .btn-reglamento:hover { background-color: #7a1f45; }
+        
+        /* Contenedor Principal */
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; display: flex; justify-content: center; }
+        .contenedor-central { width: 100%; max-width: 900px; }
+        
+        /* Título con acento verde esmeralda */
+        .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #2ecc71; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; }
+
+        /* Botonera de Deportes */
+        .filtro-deportes { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 30px; }
+        .btn-deporte { background-color: #1a365d; color: #d1d1d1; border: 1px solid #2a528a; padding: 10px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .btn-deporte:hover { background-color: #2a528a; color: white; }
+        .btn-deporte.activo { background-color: #2ecc71; color: #000000; border-color: #27ae60; }
+
+        /* Acordeón de Equipos */
+        .acordeon-item { background-color: #06111d; border: 1px solid #1a365d; border-radius: 6px; margin-bottom: 10px; overflow: hidden; }
+        .acordeon-header { background-color: #1a365d; color: white; padding: 15px 20px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .acordeon-header:hover { background-color: #2a528a; }
+        .acordeon-header.abierto { border-left: 5px solid #2ecc71; }
+        .flecha { font-size: 12px; transition: transform 0.3s; }
+        .abierto .flecha { transform: rotate(180deg); }
+
+        /* Tabla dentro del acordeón */
+        .acordeon-contenido { display: none; padding: 0; background-color: #0b1a2a; }
+        .tabla-plantel { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+        .tabla-plantel th { background-color: #0d243b; color: #8fa6ba; padding: 12px 20px; font-weight: bold; border-bottom: 1px solid #1a365d; }
+        .tabla-plantel td { padding: 12px 20px; border-bottom: 1px solid #1a365d; color: #ffffff; }
+        .tabla-plantel tr:last-child td { border-bottom: none; }
+        .tabla-plantel tr:hover td { background-color: #112a46; }
+        .rol-destacado { color: #f1c40f; font-weight: bold; font-size: 12px; border: 1px solid #f1c40f; padding: 2px 6px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">INTERFACULTADES UBA</div>
+        
+        <a href="index.html" class="menu-item">▶ INICIO</a>
+        <a href="Ajedrez.html" class="menu-item">♟️ Ajedrez</a>
+        <a href="basquet.html" class="menu-item">🏀 Básquet Masculino</a>
+        <a href="f11.html" class="menu-item">⚽ Fútbol 11</a>
+        <a href="futsal-fem.html" class="menu-item">👟 Futsal Femenino</a>
+        <a href="futsal-masc.html" class="menu-item">👟 Futsal Masculino</a>
+        <a href="handball-fem.html" class="menu-item">🤾 Handball Femenino</a>
+        <a href="handball-masc.html" class="menu-item">🤾 Handball Masculino</a>
+        <a href="hockey.html" class="menu-item">🏑 Hockey Femenino</a>
+        <a href="tenis-fem.html" class="menu-item">🎾 Tenis Femenino</a>
+        <a href="tenis-masc.html" class="menu-item">🎾 Tenis Masculino</a>
+        <a href="tenis-de-mesa.html" class="menu-item">🏓 Tenis de Mesa</a>
+        <a href="voley-fem.html" class="menu-item">🏐 Vóley Femenino</a>
+        <a href="voley-masc.html" class="menu-item">🏐 Vóley Masculino</a>
+        <a href="planteles.html" class="menu-item" style="color: white; background-color: #1a365d; border-left: 5px solid #2ecc71;">👥 Planteles</a>
+
+        <a href="#" target="_blank" class="btn-reglamento">📄 Ver Reglamento</a>
+    </div>
+
+    <div class="main-content">
+        <div class="contenedor-central">
+            
+            <h1 class="titulo-jornada">Planteles Oficiales 2026</h1>
+
+            <div class="filtro-deportes" id="contenedor-botones">
+                <span style="color:#8fa6ba;">Cargando deportes...</span>
+            </div>
+
+            <div id="contenedor-equipos"></div>
+
+        </div>
+    </div>
+
+    <script>
+        // ACÁ VAS A PEGAR EL LINK CSV DE TU PESTAÑA "PLANTELES"
+        const urlCSV = "LINK_CSV_DE_TU_PESTANA_PLANTELES";
+
+        let baseDatos = {};
+
+        async function cargarPlanteles() {
+            try {
+                const respuesta = await fetch(urlCSV);
+                if (!respuesta.ok) throw new Error("No se pudo conectar.");
+                
+                const datos = await respuesta.text();
+                const filas = datos.split('\n').slice(1); // Ignorar títulos
+                
+                // Procesar cada fila del Excel
+                filas.forEach(fila => {
+                    if (fila.trim() === '') return;
+                    
+                    const limpia = fila.replace(/\r/g, '').replace(/"/g, '');
+                    const separador = limpia.includes(';') ? ';' : ',';
+                    const col = limpia.split(separador);
+                    
+                    const deporte = col[0] ? col[0].trim() : 'Sin Deporte';
+                    const equipo = col[1] ? col[1].trim() : 'Sin Equipo';
+                    const dorsal = col[2] ? col[2].trim() : '-';
+                    const apellido = col[3] ? col[3].trim() : '';  // NUEVA COLUMNA APELLIDO (Índice 3)
+                    const nombre = col[4] ? col[4].trim() : 'Anónimo'; // NUEVA COLUMNA NOMBRE (Índice 4)
+                    const rol = col[5] ? col[5].trim() : 'Jugador'; // EL ROL PASA AL ÍNDICE 5
+
+                    // Si el deporte no existe en el diccionario, lo creamos
+                    if (!baseDatos[deporte]) {
+                        baseDatos[deporte] = {};
+                    }
+                    // Si el equipo no existe dentro del deporte, lo creamos
+                    if (!baseDatos[deporte][equipo]) {
+                        baseDatos[deporte][equipo] = [];
+                    }
+                    
+                    // Agregamos al jugador
+                    baseDatos[deporte][equipo].push({ dorsal, apellido, nombre, rol });
+                });
+
+                generarBotones();
+
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById('contenedor-botones').innerHTML = "<span style='color:#ff4d4d;'>Error cargando los datos. Revisá el link CSV.</span>";
+            }
+        }
+
+        function generarBotones() {
+            const contenedorBotones = document.getElementById('contenedor-botones');
+            contenedorBotones.innerHTML = '';
+            
+            const deportes = Object.keys(baseDatos).sort(); // Ordenados alfabéticamente
+
+            deportes.forEach((deporte, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-deporte';
+                btn.innerText = deporte;
+                btn.onclick = () => mostrarEquipos(deporte, btn);
+                contenedorBotones.appendChild(btn);
+
+                // Autoseleccionar el primero
+                if (index === 0) {
+                    mostrarEquipos(deporte, btn);
+                }
+            });
+        }
+
+        function mostrarEquipos(deporteSeleccionado, botonElement) {
+            // Pintar el botón activo
+            document.querySelectorAll('.btn-deporte').forEach(b => b.classList.remove('activo'));
+            botonElement.classList.add('activo');
+
+            const contenedorEquipos = document.getElementById('contenedor-equipos');
+            contenedorEquipos.innerHTML = '';
+
+            const equipos = baseDatos[deporteSeleccionado];
+            const nombresEquipos = Object.keys(equipos).sort(); // Ordenar equipos A-Z
+
+            nombresEquipos.forEach(nombreEquipo => {
+                const jugadores = equipos[nombreEquipo];
+                
+                // Generar las filas de los jugadores
+                let filasJugadores = '';
+                jugadores.forEach(j => {
+                    // Si es DT o Delegado, le ponemos un cartelito dorado
+                    const badgeRol = (j.rol.toUpperCase() !== 'JUGADOR') 
+                                     ? `<span class="rol-destacado">${j.rol.toUpperCase()}</span>` 
+                                     : j.rol;
+
+                    filasJugadores += `
+                        <tr>
+                            <td style="width: 50px; text-align: center; font-weight: bold; color: #8fa6ba;">${j.dorsal}</td>
+                            <td>${j.apellido}</td>
+                            <td>${j.nombre}</td>
+                            <td style="text-align: right;">${badgeRol}</td>
+                        </tr>
+                    `;
+                });
+
+                // Armar el bloque HTML del acordeón con las nuevas columnas
+                const htmlAcordeon = `
+                    <div class="acordeon-item">
+                        <div class="acordeon-header" onclick="toggleAcordeon(this)">
+                            <span>🛡️ ${nombreEquipo} (${jugadores.length} inscriptos)</span>
+                            <span class="flecha">▼</span>
+                        </div>
+                        <div class="acordeon-contenido">
+                            <table class="tabla-plantel">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center;">Nº</th>
+                                        <th>Apellido</th>
+                                        <th>Nombre</th>
+                                        <th style="text-align: right;">Rol</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${filasJugadores}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+                
+                contenedorEquipos.innerHTML += htmlAcordeon;
+            });
+        }
+
+        // Función para abrir/cerrar el acordeón
+        function toggleAcordeon(elemento) {
+            const contenido = elemento.nextElementSibling;
+            
+            if (contenido.style.display === "block") {
+                contenido.style.display = "none";
+                elemento.classList.remove("abierto");
+            } else {
+                contenido.style.display = "block";
+                elemento.classList.add("abierto");
+            }
+        }
+
+        // Ejecutar al cargar la página
+        cargarPlanteles();
+    </script>
+</body>
+</html>
