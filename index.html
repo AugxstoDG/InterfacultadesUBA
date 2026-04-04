@@ -116,13 +116,65 @@
         }
         
         .iframe-fixture {
-            width: calc(100% + 10px); 
-            margin-left: -5px; 
+            width: 100%; /* Simplificamos el ancho */
             border: none;
             display: block;
             background: transparent;
         }
 
+        /* --- DISEÑO RESPONSIVO (CELULARES) --- */
+        .btn-menu-mobile {
+            display: none; 
+            background-color: #9e2a5b;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .btn-menu-mobile {
+                display: block; 
+            }
+            
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -350px; /* SOLUCIÓN 1: Lo empujamos más a la izquierda para que no asome NADA */
+                height: 100vh;
+                z-index: 1000; 
+                transition: left 0.3s ease; 
+                box-shadow: 2px 0 15px rgba(0,0,0,0.8);
+            }
+            
+            .sidebar.abierto {
+                left: 0; 
+            }
+            
+            .main-content {
+                padding: 20px 10px; 
+            }
+            
+            .layout-columnas {
+                flex-direction: column;
+            }
+
+            /* SOLUCIÓN 2: ARREGLO DE LAS TABLAS DE GOOGLE SHEETS */
+            .iframe-fixture {
+                width: 100% !important;
+                margin-left: 0 !important;
+                height: 220px !important; /* Forzamos una altura mayor en el celu para que las filas entren cómodas y no salga la barra blanca */
+            }
+            
+            .bloque-liga {
+                overflow-x: auto; /* Si una tabla es muy ancha, permite deslizarla con el dedo hacia los costados suavemente */
+                -webkit-overflow-scrolling: touch;
+            }
+        }
         /* --- NUEVO: DISEÑO RESPONSIVO (CELULARES) --- */
         .btn-menu-mobile {
             display: none; 
