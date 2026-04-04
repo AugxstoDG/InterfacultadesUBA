@@ -121,11 +121,51 @@
             display: block;
             background: transparent;
         }
+
+        /* --- NUEVO: DISEÑO RESPONSIVO (CELULARES) --- */
+        .btn-menu-mobile {
+            display: none; 
+            background-color: #9e2a5b;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .btn-menu-mobile {
+                display: block; 
+            }
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -300px; 
+                height: 100vh;
+                z-index: 1000; 
+                transition: left 0.3s ease; 
+                box-shadow: 2px 0 15px rgba(0,0,0,0.8);
+            }
+            .sidebar.abierto {
+                left: 0; 
+            }
+            .main-content {
+                padding: 20px 10px; 
+            }
+            .layout-columnas {
+                flex-direction: column;
+            }
+        }
+        /* --- FIN NUEVO --- */
+
     </style>
 </head>
 <body>
 
-<div class="sidebar">
+    <div class="sidebar">
         <div class="logo">INTERFACULTADES UBA</div>
         
         <a href="index.html" class="menu-item" style="color: white; background-color: #1a365d; border-left: 5px solid #9e2a5b;">▶ INICIO</a>
@@ -149,6 +189,8 @@
     <div class="main-content">
         
         <div class="contenedor-central">
+            
+            <button class="btn-menu-mobile" onclick="toggleMenu()">☰ Menú</button>
             
             <h1 class="titulo-jornada">Interfacultades UBA 2026 - Domingo 19 de Abril - Jornada 2</h1>
 
@@ -211,13 +253,12 @@
 
     </div>
 
+    <script>
+        function toggleMenu() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('abierto');
+        }
+    </script>
+
 </body>
-
 </html>
-
-
-
-
-
-
-
