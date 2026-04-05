@@ -38,21 +38,8 @@
             z-index: 999;
         }
 
-        .topbar-mobile h2 {
-            margin: 0;
-            font-size: 18px;
-            letter-spacing: 1px;
-            color: #ffffff;
-        }
-
-        .btn-hamburger {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 26px;
-            cursor: pointer;
-            padding: 0;
-        }
+        .topbar-mobile h2 { margin: 0; font-size: 18px; letter-spacing: 1px; color: #ffffff; }
+        .btn-hamburger { background: none; border: none; color: white; font-size: 26px; cursor: pointer; padding: 0; }
         
         /* --- MENÚ LATERAL IZQUIERDO --- */
         .sidebar { 
@@ -80,9 +67,7 @@
             font-weight: bold;
             transition: 0.2s;
         }
-        .btn-reglamento:hover {
-            background-color: #7a1f45;
-        }
+        .btn-reglamento:hover { background-color: #7a1f45; }
         
         /* --- CONTENIDO PRINCIPAL --- */
         .main-content { 
@@ -97,28 +82,50 @@
 
         /* GRID DE DOS COLUMNAS */
         .layout-columnas { display: flex; gap: 30px; }
-        .columna-izquierda { flex: 1; display: flex; flex-direction: column; gap: 25px; }
-        .columna-derecha { flex: 1; }
+        .columna-izquierda { flex: 1.2; display: flex; flex-direction: column; gap: 25px; } /* 1.2 le da un poco más de ancho a las posiciones */
+        .columna-derecha { flex: 1.5; display: flex; flex-direction: column; } /* 1.5 hace que el fixture sea más espacioso */
 
-        /* Estilos de las cajas */
+        /* Estilos de las cajas contenedoras */
         .bloque-liga { background-color: #06111d; border-radius: 6px; overflow: hidden; border: 1px solid #1a365d; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .titulo-liga { background-color: #1a365d; color: white; padding: 12px 15px; font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
-        .iframe-fixture { width: calc(100% + 10px); margin-left: -5px; border: none; display: block; background: transparent; }
 
-        /* DISEÑO TIPO PROMIEDOS */
+        /* ESTILOS PROMIEDOS PARA FIXTURE */
         .fixture-header { background-color: #e05a00; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #a34200; } 
         .navegacion-fechas { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 16px; }
-        .btn-flecha { background: none; border: none; color: white; font-size: 18px; cursor: pointer; font-weight: bold; }
+        .btn-flecha { background: none; border: none; color: white; font-size: 18px; cursor: pointer; font-weight: bold; padding: 0 15px; }
         .btn-flecha:hover { color: #ff8533; }
-        .partido-fila { display: flex; justify-content: space-between; padding: 12px 15px; border-bottom: 1px solid #1a365d; font-size: 14px; }
-        .partido-fila:last-child { border-bottom: none; }
-        .equipo { flex: 1; text-align: center; font-weight: bold; }
-        .hora-dia { width: 60px; color: #8fa6ba; font-size: 13px; text-align: left; }
-        .resultado { width: 50px; text-align: center; font-weight: bold; background-color: #1a365d; border-radius: 4px; padding: 2px 0;}
+
+        /* --- NUEVO: TABLAS NATIVAS UNIFICADAS --- */
+        .tabla-nativa {
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+            font-size: 14px;
+            background-color: #0b1a2a;
+        }
+        .tabla-nativa thead th {
+            background-color: #1a365d;
+            color: #8fa6ba;
+            font-size: 12px;
+            padding: 10px 5px;
+            border-bottom: 2px solid #06111d;
+        }
+        .tabla-nativa tr {
+            border-bottom: 1px solid #1a365d;
+        }
+        .tabla-nativa tr:last-child { border-bottom: none; }
+        .tabla-nativa tbody tr:nth-child(even) { background-color: #081421; }
+        .tabla-nativa td { padding: 12px 5px; vertical-align: middle; }
+        
+        /* Ajustes específicos para las columnas del Fixture */
+        .col-hora { text-align: center; width: 15%; border-right: 1px solid #1a365d; line-height: 1.3;}
+        .col-local { text-align: right; width: 35%; font-weight: bold; padding-right: 15px !important;}
+        .col-resultado { text-align: center; width: 15%; }
+        .caja-resultado { background-color: #1a365d; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 14px; white-space: nowrap; }
+        .col-visitante { text-align: left; width: 35%; font-weight: bold; padding-left: 15px !important;}
 
         /* --- DISEÑO RESPONSIVO (CELULARES) --- */
         @media (max-width: 768px) {
-            
             .topbar-mobile { display: flex; }
             .app-wrapper { flex-direction: column; }
             
@@ -133,13 +140,16 @@
             }
             .sidebar.abierto { left: 0; }
             
+            /* Lógica Edge-to-Edge */
             .main-content { padding: 20px 0px; }
             .titulo-jornada { font-size: 20px; padding: 0 15px; }
-            
-            /* Apilamos las columnas una sobre otra */
             .layout-columnas { flex-direction: column; gap: 25px; padding: 0; }
-            
             .bloque-liga { border-radius: 0; border-left: none; border-right: none; }
+            
+            /* Ajuste de fuentes para celular */
+            .tabla-nativa { font-size: 12px; }
+            .tabla-nativa td { padding: 10px 2px; }
+            .caja-resultado { padding: 3px 5px; font-size: 12px; }
             
             .footer-container {
                 flex-direction: column;
@@ -148,10 +158,7 @@
                 border-radius: 0; 
                 margin-top: 30px;
             }
-            .footer-map-container {
-                justify-content: center !important;
-                margin-top: 20px;
-            }
+            .footer-map-container { justify-content: center !important; margin-top: 20px; }
         }
     </style>
 </head>
@@ -197,12 +204,16 @@
                         
                         <div class="bloque-liga">
                             <div class="titulo-liga">📊 ZONA 1 - POSICIONES</div>
-                            <iframe class="iframe-fixture" style="height: 189px; border: none; width: 100%; overflow: hidden;" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=1251464987&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;rm=minimal"></iframe>
+                            <table class="tabla-nativa" id="tabla-zona1">
+                                <tbody><tr><td style="text-align: center; padding: 20px; color: #8fa6ba;">⏳ Cargando Posiciones...</td></tr></tbody>
+                            </table>
                         </div>
 
                         <div class="bloque-liga">
                             <div class="titulo-liga">📊 ZONA 2 - POSICIONES</div>
-                            <iframe class="iframe-fixture" style="height: 168px; border: none; width: 100%; overflow: hidden;" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=1270812449&single=true&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;rm=minimal"></iframe>
+                            <table class="tabla-nativa" id="tabla-zona2">
+                                <tbody><tr><td style="text-align: center; padding: 20px; color: #8fa6ba;">⏳ Cargando Posiciones...</td></tr></tbody>
+                            </table>
                         </div>
 
                     </div>
@@ -219,9 +230,11 @@
                                 </div>
                             </div>
                             
-                            <div id="contenedor-partidos">
-                                <p style="text-align:center; padding:30px; color:#6486a3;">Cargando partidos...</p>
-                            </div>
+                            <table class="tabla-nativa">
+                                <tbody id="contenedor-partidos">
+                                    <tr><td colspan="4" style="text-align:center; padding:30px; color:#6486a3;">Cargando partidos...</td></tr>
+                                </tbody>
+                            </table>
                         </div>
 
                     </div>
@@ -262,15 +275,63 @@
     </div>
 
     <script>
-        // --- FUNCIÓN DEL MENÚ MOBILE ---
+        // --- MENÚ MOBILE ---
         function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.toggle('abierto');
+            document.querySelector('.sidebar').classList.toggle('abierto');
         }
 
-        // --- LÓGICA DE DATOS DEL FIXTURE ---
-        const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=390842621&single=true&output=csv";
+        // ==========================================
+        // ENLACES CSV (¡Acordate de poner output=csv!)
+        // ==========================================
+        const URL_FIXTURE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=390842621&single=true&output=csv";
         
+        // ¡REEMPLAZÁ ESTOS LINKS POR LOS TUYOS CON OUTPUT=CSV!
+        const URL_ZONA1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1251464987&single=true&output=csv";
+        const URL_ZONA2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1270812449&single=true&output=csv";
+        
+        // --- 1. LÓGICA PARA TABLAS DE POSICIONES ---
+        async function cargarPosicionesDinamicas(idTabla, urlCSV) {
+            try {
+                const res = await fetch(urlCSV);
+                const csv = await res.text();
+                if (csv.includes('<html')) throw new Error("Asegurate de usar el link con output=csv");
+                
+                const filas = csv.split('\n').filter(f => f.trim() !== '');
+                if (filas.length === 0) return;
+
+                // Generar los Títulos (Headers) desde la fila 1
+                const headers = filas[0].split(',');
+                let theadHTML = '<tr>';
+                headers.forEach((h, index) => {
+                    // Si es la columna 1 (generalmente "Equipo"), alinea a la izquierda
+                    let align = (index === 1) ? 'left' : 'center';
+                    theadHTML += `<th style="text-align:${align};">${h.replace(/"/g, '').trim()}</th>`;
+                });
+                theadHTML += '</tr>';
+
+                // Generar el Cuerpo con los datos
+                let tbodyHTML = '';
+                for(let i=1; i<filas.length; i++) {
+                    const cols = filas[i].split(',');
+                    tbodyHTML += '<tr>';
+                    cols.forEach((c, index) => {
+                        let text = c.replace(/"/g, '').trim();
+                        let align = (index === 1) ? 'left' : 'center';
+                        let weight = (index === 1 || index === 2) ? 'bold' : 'normal'; // Equipo y PTS en negrita
+                        let color = (index === 2) ? '#e05a00' : 'inherit'; // PTS en Naranja
+                        tbodyHTML += `<td style="text-align:${align}; font-weight:${weight}; color:${color};">${text}</td>`;
+                    });
+                    tbodyHTML += '</tr>';
+                }
+
+                document.getElementById(idTabla).innerHTML = `<thead>${theadHTML}</thead><tbody>${tbodyHTML}</tbody>`;
+            } catch (e) {
+                console.error(e);
+                document.getElementById(idTabla).innerHTML = `<tbody><tr><td style="text-align:center; padding:20px; color:#ff4d4d;">Error al cargar. Verificá permisos y link CSV.</td></tr></tbody>`;
+            }
+        }
+
+        // --- 2. LÓGICA PARA FIXTURE INTERACTIVO ---
         const nombresEquipos = {
             "AGRO": "AGRONOMÍA", "AGRO-A": "AGRONOMÍA A", "AGRO-B": "AGRONOMÍA B",
             "CBC": "CBC", "CBC-A": "CBC A", "CBC-B": "CBC B",
@@ -292,10 +353,10 @@
         let todosLosPartidos = [];
         let fechaActual = 1; 
 
-        async function cargarBaseDeDatos() {
+        async function cargarFixture() {
             try {
-                const respuesta = await fetch(urlCSV);
-                if (!respuesta.ok) throw new Error("No se pudo conectar con la base de datos.");
+                const respuesta = await fetch(URL_FIXTURE);
+                if (!respuesta.ok) throw new Error("Fallo de red");
                 
                 const datos = await respuesta.text();
                 const filas = datos.split('\n').slice(1); 
@@ -305,14 +366,11 @@
                     const separador = limpia.includes(';') ? ';' : ',';
                     const columnas = limpia.split(separador); 
                     
-                    const fechaTexto = columnas[3] ? columnas[3] : "0";
-                    const numFecha = parseInt(fechaTexto.replace(/\D/g, '')) || 1;
-
+                    const numFecha = parseInt((columnas[3] || "0").replace(/\D/g, '')) || 1;
                     const idLocal = columnas[5] ? columnas[5].trim() : '';
                     const idVisitante = columnas[8] ? columnas[8].trim() : '';
 
                     return {
-                        dia: columnas[1] ? columnas[1].trim() : '',      
                         hora: columnas[2] ? columnas[2].trim() : '',     
                         fecha: numFecha,                                 
                         zona: columnas[4] ? columnas[4].trim() : '', 
@@ -322,60 +380,58 @@
                         visitante: nombresEquipos[idVisitante] || idVisitante 
                     };
                 });
-
                 mostrarFecha(fechaActual);
-
             } catch (error) {
-                console.error("Detalle del error: ", error);
-                document.getElementById('contenedor-partidos').innerHTML = 
-                    "<p style='text-align:center; padding:20px; color:#ff4d4d;'>Esperando datos de la nueva hoja de cálculo...</p>";
+                document.getElementById('contenedor-partidos').innerHTML = "<tr><td colspan='4' style='text-align:center; padding:20px; color:#ff4d4d;'>Error al cargar fixture.</td></tr>";
             }
         }
 
         function mostrarFecha(numeroFecha) {
             const contenedor = document.getElementById('contenedor-partidos');
-            const tituloFecha = document.getElementById('titulo-fecha-actual');
+            document.getElementById('titulo-fecha-actual').innerText = `FECHA ${numeroFecha} ▼`;
             contenedor.innerHTML = ''; 
-            
-            tituloFecha.innerText = `FECHA ${numeroFecha} ▼`;
 
-            const partidosDeEstaFecha = todosLosPartidos.filter(p => p.fecha === numeroFecha);
+            const partidos = todosLosPartidos.filter(p => p.fecha === numeroFecha);
 
-            if (partidosDeEstaFecha.length === 0) {
-                contenedor.innerHTML = "<p style='text-align:center; padding:20px; color:#6486a3;'>No hay partidos cargados para esta fecha.</p>";
+            if (partidos.length === 0) {
+                contenedor.innerHTML = "<tr><td colspan='4' style='text-align:center; padding:20px; color:#6486a3;'>No hay partidos cargados para esta fecha.</td></tr>";
                 return;
             }
 
-            partidosDeEstaFecha.forEach(p => {
+            partidos.forEach(p => {
                 const resL = (p.golL !== '' && p.golL !== undefined) ? p.golL : '-';
                 const resV = (p.golV !== '' && p.golV !== undefined) ? p.golV : '-';
 
+                // Usamos estructura de tabla (<tr> <td>) para el Fixture Promiedos Style
                 const htmlPartido = `
-                    <div class="partido-fila">
-                        <div class="hora-dia" style="display:flex; flex-direction:column; justify-content:center;">
-                            <span style="color:#d1d1d1; font-weight:bold;">${p.hora}</span>
-                            <span style="color:#e05a00; font-size:11px; font-weight:bold;">Zona ${p.zona}</span>
-                        </div>
-                        <div class="equipo" style="text-align: right; padding-right:10px;">${p.local}</div>
-                        <div class="resultado">${resL} - ${resV}</div>
-                        <div class="equipo" style="text-align: left; padding-left:10px;">${p.visitante}</div>
-                    </div>
+                    <tr>
+                        <td class="col-hora">
+                            <span style="color:#d1d1d1; font-weight:bold; font-size:13px;">${p.hora}</span><br>
+                            <span style="color:#e05a00; font-size:10px; font-weight:bold; text-transform:uppercase;">Zona ${p.zona}</span>
+                        </td>
+                        <td class="col-local">${p.local}</td>
+                        <td class="col-resultado">
+                            <span class="caja-resultado">${resL} - ${resV}</span>
+                        </td>
+                        <td class="col-visitante">${p.visitante}</td>
+                    </tr>
                 `;
                 contenedor.innerHTML += htmlPartido;
             });
         }
 
         function cambiarFecha(direccion) {
-            if (direccion === 'atras' && fechaActual > 1) {
-                fechaActual--;
-                mostrarFecha(fechaActual);
-            } else if (direccion === 'adelante') {
-                fechaActual++;
-                mostrarFecha(fechaActual);
-            }
+            if (direccion === 'atras' && fechaActual > 1) fechaActual--;
+            else if (direccion === 'adelante') fechaActual++;
+            mostrarFecha(fechaActual);
         }
 
-        cargarBaseDeDatos();
+        // Inicializamos todo al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarFixture();
+            cargarPosicionesDinamicas('tabla-zona1', URL_ZONA1);
+            cargarPosicionesDinamicas('tabla-zona2', URL_ZONA2);
+        });
     </script>
 </body>
 </html>
