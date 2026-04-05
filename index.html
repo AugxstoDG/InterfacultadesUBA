@@ -5,30 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interfacultades UBA</title>
     <style>
-        /* --- FONDO GENERAL Y CENTRADO (ESTILO PROMIEDOS) --- */
+        /* --- FONDO GENERAL Y CENTRADO --- */
         body { 
             margin: 0; 
             font-family: Arial, sans-serif; 
-            background-color: #030a11; /* Un azul casi negro para los costados vacíos */
+            background-color: #030a11; 
             color: white; 
             display: flex; 
-            justify-content: center; /* Centra la aplicación en pantallas grandes */
+            justify-content: center; 
         }
 
-        /* El contenedor principal que limita el ancho */
         .app-wrapper {
             display: flex;
             width: 100%;
-            max-width: 1200px; /* Ancho máximo de la página en la compu */
-            background-color: #0b1a2a; /* El color original de tu página */
+            max-width: 1200px; 
+            background-color: #0b1a2a; 
             min-height: 100vh;
             position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Sombrita para separarlo del fondo */
+            box-shadow: 0 0 20px rgba(0,0,0,0.5); 
         }
 
         /* --- BARRA SUPERIOR PARA CELULARES --- */
         .topbar-mobile {
-            display: none; /* En la compu no se ve */
+            display: none; 
             background-color: #06111d;
             padding: 15px 20px;
             align-items: center;
@@ -62,7 +61,7 @@
             padding: 20px; 
             overflow-y: auto; 
             border-right: 2px solid #1a365d; 
-            flex-shrink: 0; /* Evita que el menú se aplaste en la compu */
+            flex-shrink: 0; 
         }
         
         .logo { 
@@ -167,7 +166,6 @@
         /* --- DISEÑO RESPONSIVO (CELULARES) --- */
         @media (max-width: 768px) {
             
-            /* Aparece la barra superior y las columnas se apilan */
             .topbar-mobile {
                 display: flex; 
             }
@@ -175,7 +173,6 @@
                 flex-direction: column;
             }
             
-            /* El menú lateral se esconde y flota por encima */
             .sidebar {
                 position: fixed;
                 top: 0;
@@ -189,18 +186,32 @@
                 left: 0; 
             }
             
-            /* Ajustes de espacio para la pantalla chica */
+            /* EL TRUCO PROMIEDOS: Cero margen lateral */
             .main-content {
-                padding: 20px 10px; 
-            }
-            .titulo-jornada {
-                font-size: 18px;
+                padding: 20px 0px; 
             }
             
-            /* El footer se apila al medio */
+            .titulo-jornada {
+                font-size: 18px;
+                padding: 0 15px; /* Mantenemos el margen solo para el título */
+            }
+            
+            .bloque-liga {
+                border-radius: 0; /* Bordes rectos */
+                border-left: none; /* Sin borde lateral */
+                border-right: none; /* Sin borde lateral */
+            }
+
+            .iframe-fixture {
+                width: 100% !important;
+                margin-left: 0 !important;
+            }
+            
             .footer-container {
                 flex-direction: column;
                 text-align: center;
+                padding: 30px 15px;
+                border-radius: 0; /* El footer también toca los bordes */
             }
             .footer-map-container {
                 justify-content: center !important;
@@ -323,7 +334,7 @@
 
                     <div class="footer-map-container" style="flex: 1; min-width: 280px; display: flex; justify-content: flex-end;">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6572.933292564416!2d-58.448934955520784!3d-34.5417384669569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb4395d682eff%3A0x95c4a137d8448252!2sUBA%20Deportes!5e0!3m2!1ses!2sar!4v1775392722709!5m2!1ses!2sar" 
+                            src="TU_ENLACE_DE_GOOGLE_MAPS_ACA" 
                             style="border: 2px solid #1a365d; border-radius: 8px; width: 100%; max-width: 380px; height: 220px;" 
                             allowfullscreen="" 
                             loading="lazy" 
@@ -336,7 +347,9 @@
             </div> 
         </div> 
 
-    </div> <script>
+    </div>
+
+    <script>
         function toggleMenu() {
             const sidebar = document.querySelector('.sidebar');
             sidebar.classList.toggle('abierto');
