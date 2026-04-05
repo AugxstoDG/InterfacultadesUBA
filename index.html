@@ -139,7 +139,7 @@
             background-color: #06111d; 
             border-radius: 6px;
             margin-bottom: 25px;
-            overflow: hidden; /* Esto es vital: corta las barras de Google */
+            overflow: hidden; 
             border: 1px solid #1a365d;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
@@ -155,14 +155,42 @@
             gap: 10px;
         }
         
-        /* EL TRUCO PARA OCULTAR LA BARRA VERTICAL */
         .iframe-fixture {
-            width: calc(100% + 22px) !important; /* Estira la tabla hacia la derecha */
+            width: calc(100% + 22px) !important; 
             margin-left: 0 !important; 
             border: none;
             display: block;
             background: transparent;
         }
+
+        /* --- NUEVO: ESTILO DE TABLA PROMIEDOS (NATIVA) --- */
+        .tabla-nativa {
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+            font-size: 14px;
+            background-color: #0b1a2a;
+        }
+        .tabla-nativa tr {
+            border-bottom: 1px solid #1a365d;
+        }
+        .tabla-nativa tr:last-child {
+            border-bottom: none;
+        }
+        .tabla-nativa tr:nth-child(even) {
+            background-color: #081421; 
+        }
+        .tabla-nativa td {
+            padding: 12px 5px;
+            vertical-align: middle;
+        }
+        
+        /* Columnas específicas */
+        .col-hora { text-align: center; font-weight: bold; color: #8fa6ba; width: 15%; border-right: 1px solid #1a365d; }
+        .col-cancha { text-align: center; color: #8fa6ba; width: 10%; border-right: 1px solid #1a365d; }
+        .col-local { text-align: right; width: 30%; font-weight: bold; }
+        .col-vs { text-align: center; width: 10%; color: #9e2a5b; font-weight: bold; font-size: 12px; }
+        .col-visitante { text-align: left; width: 30%; font-weight: bold; }
 
         /* --- DISEÑO RESPONSIVO (CELULARES) --- */
         @media (max-width: 768px) {
@@ -201,6 +229,11 @@
                 border-left: none; 
                 border-right: none; 
             }
+
+            /* Ajustes en celular para la tabla nativa */
+            .tabla-nativa { font-size: 12px; } 
+            .col-hora, .col-cancha { font-size: 11px; }
+            .tabla-nativa td { padding: 10px 2px; } 
             
             .footer-container {
                 flex-direction: column;
@@ -252,7 +285,15 @@
 
                 <div class="bloque-liga">
                     <div class="titulo-liga">🏀 BÁSQUET MASCULINO</div>
-                    <iframe class="iframe-fixture" scrolling="no" style="height: 172px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?widget=false&headers=false&chrome=false"></iframe>
+                    <table class="tabla-nativa">
+                        <tbody id="cuerpo-basquet">
+                            <tr>
+                                <td colspan="5" style="text-align: center; padding: 20px; color: #8fa6ba;">
+                                    ⏳ Cargando partidos...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <div class="bloque-liga">
@@ -345,10 +386,66 @@
     </div>
 
     <script>
+        // 1. Abre y cierra el menú del celular
         function toggleMenu() {
             const sidebar = document.querySelector('.sidebar');
             sidebar.classList.toggle('abierto');
         }
+
+        // 2. Lee el Excel de Básquet y arma la tabla Promiedos
+        async function cargarBasquet() {
+            // URL con el parámetro output=csv para leer los datos puros
+            const urlBasquet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?output=csv';
+            
+            try {
+                const respuesta = await fetch(urlBasquet);
+                const datosCSV = await respuesta.text();
+                
+                // Corta el archivo por filas
+                const filas = datosCSV.split('\n');
+                let htmlTabla = '';
+
+                // Recorre las filas
+                filas.forEach(fila => {
+                    const columnas = fila.split(',');
+                    
+                    // Valida que el renglón no esté vacío y tenga las columnas necesarias
+                    if (columnas.length >= 4 && columnas[0].trim() !== '') {
+                        const hora = columnas[0].trim();
+                        const cancha = columnas[1].trim();
+                        const local = columnas[2].trim();
+                        // Asumimos que la columna 3 tiene el "VS", así que el visitante está en la 4
+                        const visitante = columnas.length > 4 ? columnas[4].trim() : columnas[3].trim();
+                        
+                        // Va sumando las filas al HTML
+                        htmlTabla += `
+                            <tr>
+                                <td class="col-hora">${hora}</td>
+                                <td class="col-cancha">${cancha}</td>
+                                <td class="col-local">${local}</td>
+                                <td class="col-vs">VS</td>
+                                <td class="col-visitante">${visitante}</td>
+                            </tr>
+                        `;
+                    }
+                });
+
+                // Si no había datos, avisa
+                if(htmlTabla === '') {
+                    htmlTabla = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No hay partidos cargados.</td></tr>';
+                }
+
+                // Inyecta todo en el HTML
+                document.getElementById('cuerpo-basquet').innerHTML = htmlTabla;
+
+            } catch (error) {
+                document.getElementById('cuerpo-basquet').innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px; color: #e74c3c;">Error de conexión. Intente actualizar la página.</td></tr>';
+                console.error('Error al cargar Excel:', error);
+            }
+        }
+
+        // Se dispara al abrir la página
+        document.addEventListener('DOMContentLoaded', cargarBasquet);
     </script>
 
 </body>
