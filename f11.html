@@ -52,7 +52,9 @@
         }
         .logo { font-size: 22px; font-weight: bold; margin-bottom: 40px; color: #ffffff; text-align: center; letter-spacing: 1px; }
         .menu-item { display: block; padding: 12px 10px; color: #d1d1d1; text-decoration: none; border-bottom: 1px solid #1a365d; font-size: 14px; font-weight: bold; transition: 0.2s; }
-        .menu-item:hover { color: white; background-color: #1a365d; border-left: 5px solid #e05a00; }
+        
+        /* HOVER VERDE */
+        .menu-item:hover { color: white; background-color: #1a365d; border-left: 5px solid #38b000; }
         
         .btn-reglamento {
             display: block;
@@ -78,7 +80,9 @@
             justify-content: center; 
         }
         .contenedor-central { width: 100%; max-width: 1100px; }
-        .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #e05a00; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; }
+        
+        /* SUBRAYADO DEL TÍTULO EN VERDE */
+        .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #38b000; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; }
 
         /* --- GRID DE DOS COLUMNAS (DISEÑO PROMIEDOS) --- */
         .layout-columnas { display: flex; gap: 30px; }
@@ -98,11 +102,11 @@
         }
         .titulo-liga { background-color: #1a365d; color: white; padding: 12px 15px; font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
 
-        /* ESTILOS PROMIEDOS PARA FIXTURE */
-        .fixture-header { background-color: #e05a00; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #a34200; } 
+        /* ESTILOS PROMIEDOS PARA FIXTURE (FONDO VERDE PASTO) */
+        .fixture-header { background-color: #206a33; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #103c1b; } 
         .navegacion-fechas { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 16px; }
         .btn-flecha { background: none; border: none; color: white; font-size: 18px; cursor: pointer; font-weight: bold; padding: 0 15px; }
-        .btn-flecha:hover { color: #ff8533; }
+        .btn-flecha:hover { color: #4cd45f; }
 
         /* --- TABLAS NATIVAS UNIFICADAS --- */
         .tabla-nativa {
@@ -185,7 +189,7 @@
             <a href="index.html" class="menu-item">▶ INICIO</a>
             <a href="Ajedrez.html" class="menu-item">♟️ Ajedrez</a>
             <a href="basquet.html" class="menu-item">🏀 Básquet Masculino</a>
-            <a href="f11.html" class="menu-item" style="color: white; background-color: #1a365d; border-left: 5px solid #e05a00;">⚽ Fútbol 11</a>
+            <a href="f11.html" class="menu-item" style="color: white; background-color: #1a365d; border-left: 5px solid #38b000;">⚽ Fútbol 11</a>
             <a href="futsal-fem.html" class="menu-item">👟 Futsal Femenino</a>
             <a href="futsal-masc.html" class="menu-item">👟 Futsal Masculino</a>
             <a href="handball-fem.html" class="menu-item">🤾 Handball Femenino</a>
@@ -291,9 +295,9 @@
         // ==========================================
         // ENLACES CSV (¡Acordate de poner output=csv!)
         // ==========================================
-        const URL_FIXTURE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1546057395&single=true&output=csv";
-        const URL_ZONA1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1950267830&single=true&output=csv";
-        const URL_ZONA2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1305485130&single=true&output=csv";
+        const URL_FIXTURE = "PEGA_ACA_EL_CSV_DEL_FIXTURE_DE_FUTBOL11";
+        const URL_ZONA1 = "PEGA_ACA_EL_CSV_DE_LA_ZONA1_DE_FUTBOL11";
+        const URL_ZONA2 = "PEGA_ACA_EL_CSV_DE_LA_ZONA2_DE_FUTBOL11";
         
         // --- 1. LÓGICA PARA TABLAS DE POSICIONES (CON COLUMNAS OCULTAS) ---
         async function cargarPosicionesDinamicas(idTabla, urlCSV) {
@@ -337,9 +341,9 @@
                         let weight = (index === 1 || index === 2 || index === 3) ? 'bold' : 'normal'; 
                         
                         let color = 'inherit';
-                        // Detalle estético: El número de posición va en gris, los puntos en naranja
+                        // Detalle estético: El número de posición va en gris, los puntos en VERDE
                         if (index === 1) color = '#8fa6ba';
-                        if (index === 3) color = '#e05a00'; 
+                        if (index === 3) color = '#38b000'; 
 
                         tbodyHTML += `<td style="text-align:${align}; font-weight:${weight}; color:${color};">${text}</td>`;
                     });
@@ -349,7 +353,7 @@
                 document.getElementById(idTabla).innerHTML = `<thead>${theadHTML}</thead><tbody>${tbodyHTML}</tbody>`;
             } catch (e) {
                 console.error(e);
-                document.getElementById(idTabla).innerHTML = `<tbody><tr><td style="text-align:center; padding:20px; color:#ff4d4d;">Error al cargar. Verificá permisos y link CSV.</td></tr></tbody>`;
+                document.getElementById(idTabla).innerHTML = `<tbody><tr><td style="text-align:center; padding:20px; color:#ff4d4d;">Esperando conexión con Google Sheets...</td></tr></tbody>`;
             }
         }
 
@@ -404,7 +408,7 @@
                 });
                 mostrarFecha(fechaActual);
             } catch (error) {
-                document.getElementById('contenedor-partidos').innerHTML = "<tr><td colspan='4' style='text-align:center; padding:20px; color:#ff4d4d;'>Error al cargar fixture.</td></tr>";
+                document.getElementById('contenedor-partidos').innerHTML = "<tr><td colspan='4' style='text-align:center; padding:20px; color:#ff4d4d;'>Esperando conexión con Google Sheets...</td></tr>";
             }
         }
 
@@ -428,7 +432,7 @@
                     <tr>
                         <td class="col-hora">
                             <span style="color:#d1d1d1; font-weight:bold; font-size:13px;">${p.hora}</span><br>
-                            <span style="color:#e05a00; font-size:10px; font-weight:bold; text-transform:uppercase;">Zona ${p.zona}</span>
+                            <span style="color:#38b000; font-size:10px; font-weight:bold; text-transform:uppercase;">Zona ${p.zona}</span>
                         </td>
                         <td class="col-local">${p.local}</td>
                         <td class="col-resultado">
