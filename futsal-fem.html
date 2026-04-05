@@ -9,7 +9,7 @@
         body { 
             margin: 0; 
             font-family: Arial, sans-serif; 
-            background-color: #0a141e; /* Fondo exterior bien oscuro */
+            background-color: #0a141e; 
             color: white; 
             display: flex; 
             justify-content: center; 
@@ -19,7 +19,7 @@
             display: flex;
             width: 100%;
             max-width: 1200px; 
-            background-color: #122336; /* Fondo más claro para generar contraste con las tablas */
+            background-color: #122336; 
             min-height: 100vh;
             position: relative;
             box-shadow: 0 0 20px rgba(0,0,0,0.5); 
@@ -53,7 +53,7 @@
         .logo { font-size: 22px; font-weight: bold; margin-bottom: 40px; color: #ffffff; text-align: center; letter-spacing: 1px; }
         .menu-item { display: block; padding: 12px 10px; color: #d1d1d1; text-decoration: none; border-bottom: 1px solid #1a365d; font-size: 14px; font-weight: bold; transition: 0.2s; }
         
-        /* HOVER VIOLETA */
+        /* 1. HOVER VIOLETA */
         .menu-item:hover { color: white; background-color: #1a365d; border-left: 5px solid #8e44ad; }
         
         .btn-reglamento {
@@ -81,7 +81,7 @@
         }
         .contenedor-central { width: 100%; max-width: 1100px; }
         
-        /* SUBRAYADO DEL TÍTULO EN VIOLETA */
+        /* 2. SUBRAYADO DEL TÍTULO EN VIOLETA */
         .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #8e44ad; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; }
 
         /* --- GRID DE DOS COLUMNAS (DISEÑO PROMIEDOS) --- */
@@ -100,9 +100,11 @@
         }
         .titulo-liga { background-color: #1a365d; color: white; padding: 12px 15px; font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
 
-        /* ESTILOS PROMIEDOS PARA FIXTURE (FONDO VIOLETA) */
+        /* 3. ESTILOS PROMIEDOS PARA FIXTURE (FONDO VIOLETA) */
         .fixture-header { background-color: #8e44ad; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #5e2d73; } 
         .navegacion-fechas { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 16px; }
+        
+        /* 4. HOVER FLECHAS VIOLETA CLARITO */
         .btn-flecha { background: none; border: none; color: white; font-size: 18px; cursor: pointer; font-weight: bold; padding: 0 15px; }
         .btn-flecha:hover { color: #d7bde2; }
 
@@ -121,9 +123,7 @@
             padding: 10px 5px;
             border-bottom: 2px solid #06111d;
         }
-        .tabla-nativa tr {
-            border-bottom: 1px solid #1a365d;
-        }
+        .tabla-nativa tr { border-bottom: 1px solid #1a365d; }
         .tabla-nativa tr:last-child { border-bottom: none; }
         .tabla-nativa tbody tr:nth-child(even) { background-color: #081421; }
         .tabla-nativa td { padding: 12px 5px; vertical-align: middle; }
@@ -187,7 +187,9 @@
             <a href="Ajedrez.html" class="menu-item">♟️ Ajedrez</a>
             <a href="basquet.html" class="menu-item">🏀 Básquet Masculino</a>
             <a href="f11.html" class="menu-item">⚽ Fútbol 11</a>
+            
             <a href="futsal-fem.html" class="menu-item" style="color: white; background-color: #1a365d; border-left: 5px solid #8e44ad;">👟 Futsal Femenino</a>
+            
             <a href="futsal-masc.html" class="menu-item">👟 Futsal Masculino</a>
             <a href="handball-fem.html" class="menu-item">🤾 Handball Femenino</a>
             <a href="handball-masc.html" class="menu-item">🤾 Handball Masculino</a>
@@ -231,7 +233,7 @@
                         
                         <div class="bloque-liga">
                             <div class="fixture-header">
-                                <div>FIXTURE FUTSAL FEMENINO</div>
+                                <div>FIXTURE FUTSAL FEMENINO 2026</div>
                                 <div class="navegacion-fechas">
                                     <button class="btn-flecha" onclick="cambiarFecha('atras')">❮</button>
                                     <span id="titulo-fecha-actual">FECHA 1 ▼</span>
@@ -284,19 +286,18 @@
     </div>
 
     <script>
-        // --- MENÚ MOBILE ---
         function toggleMenu() {
             document.querySelector('.sidebar').classList.toggle('abierto');
         }
 
         // ==========================================
-        // LINKS DE GOOGLE SHEETS YA ADAPTADOS A CSV
+        // ACÁ REEMPLAZAR POR LOS LINKS DE FUTSAL FEMENINO (Deben tener output=csv)
         // ==========================================
         const URL_FIXTURE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1369060754&single=true&output=csv";
         const URL_ZONA1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=941193034&single=true&output=csv";
         const URL_ZONA2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1701455476&single=true&output=csv";
+        // ==========================================
         
-        // --- 1. LÓGICA PARA TABLAS DE POSICIONES (CON COLUMNAS OCULTAS) ---
         async function cargarPosicionesDinamicas(idTabla, urlCSV) {
             try {
                 const res = await fetch(urlCSV);
@@ -306,40 +307,31 @@
                 const filas = csv.split('\n').filter(f => f.trim() !== '');
                 if (filas.length === 0) return;
 
-                // Generar los Títulos (Headers) 
                 const headers = filas[0].split(',');
                 let theadHTML = '<tr>';
                 headers.forEach((h, index) => {
-                    // Magia 1: Si es el índice 0 (ID_Equipo), lo salteamos
                     if (index === 0) return; 
-
-                    // Magia 2: Alineamos la columna "Equipo" a la izquierda
                     let align = (index === 2) ? 'left' : 'center'; 
                     theadHTML += `<th style="text-align:${align};">${h.replace(/"/g, '').trim()}</th>`;
                 });
                 theadHTML += '</tr>';
 
-                // Generar el Cuerpo con los datos
                 let tbodyHTML = '';
                 for(let i=1; i<filas.length; i++) {
                     const cols = filas[i].split(',');
-                    // Por si la fila está vacía o rota
                     if(cols.length < 3) continue; 
                     
                     tbodyHTML += '<tr>';
                     cols.forEach((c, index) => {
-                        // Saltear el índice 0 (ID_Equipo)
                         if (index === 0) return; 
 
                         let text = c.replace(/"/g, '').trim();
                         let align = (index === 2) ? 'left' : 'center'; 
-                        
-                        // Negrita para Posición, Equipo y PTS
                         let weight = (index === 1 || index === 2 || index === 3) ? 'bold' : 'normal'; 
                         
                         let color = 'inherit';
-                        // Detalle estético: El número de posición va en gris, los puntos en VIOLETA
                         if (index === 1) color = '#8fa6ba';
+                        // 6. COLOR VIOLETA EN LA COLUMNA DE PTS
                         if (index === 3) color = '#8e44ad'; 
 
                         tbodyHTML += `<td style="text-align:${align}; font-weight:${weight}; color:${color};">${text}</td>`;
@@ -354,7 +346,6 @@
             }
         }
 
-        // --- 2. LÓGICA PARA FIXTURE INTERACTIVO ---
         const nombresEquipos = {
             "AGRO": "AGRONOMÍA", "AGRO-A": "AGRONOMÍA A", "AGRO-B": "AGRONOMÍA B",
             "CBC": "CBC", "CBC-A": "CBC A", "CBC-B": "CBC B",
