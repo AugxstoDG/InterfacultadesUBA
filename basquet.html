@@ -9,7 +9,7 @@
         body { 
             margin: 0; 
             font-family: Arial, sans-serif; 
-            background-color: #030a11; 
+            background-color: #0a141e; /* Fondo exterior bien oscuro */
             color: white; 
             display: flex; 
             justify-content: center; 
@@ -19,7 +19,7 @@
             display: flex;
             width: 100%;
             max-width: 1200px; 
-            background-color: #0b1a2a; 
+            background-color: #122336; /* NUEVO: Fondo más claro para generar contraste con las tablas */
             min-height: 100vh;
             position: relative;
             box-shadow: 0 0 20px rgba(0,0,0,0.5); 
@@ -80,13 +80,22 @@
         .contenedor-central { width: 100%; max-width: 1100px; }
         .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #e05a00; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; }
 
-        /* GRID DE DOS COLUMNAS */
+        /* --- GRID DE DOS COLUMNAS (DISEÑO PROMIEDOS) --- */
         .layout-columnas { display: flex; gap: 30px; }
-        .columna-izquierda { flex: 1.2; display: flex; flex-direction: column; gap: 25px; } 
-        .columna-derecha { flex: 1.5; display: flex; flex-direction: column; } 
+        
+        /* Posiciones ahora tienen el 60% del ancho */
+        .columna-izquierda { flex: 1.6; display: flex; flex-direction: column; gap: 25px; } 
+        /* Fixture ahora tiene el 40% del ancho, más comprimido y elegante */
+        .columna-derecha { flex: 1; display: flex; flex-direction: column; } 
 
         /* Estilos de las cajas contenedoras */
-        .bloque-liga { background-color: #06111d; border-radius: 6px; overflow: hidden; border: 1px solid #1a365d; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .bloque-liga { 
+            background-color: #06111d; /* Oscuras para que resalten sobre el fondo gris-azulado */
+            border-radius: 6px; 
+            overflow: hidden; 
+            border: 1px solid #1a365d; 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4); /* Sombra un poco más fuerte */
+        }
         .titulo-liga { background-color: #1a365d; color: white; padding: 12px 15px; font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
 
         /* ESTILOS PROMIEDOS PARA FIXTURE */
@@ -124,7 +133,7 @@
         .caja-resultado { background-color: #1a365d; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 14px; white-space: nowrap; }
         .col-visitante { text-align: left; width: 35%; font-weight: bold; padding-left: 15px !important;}
 
-        /* --- DISEÑO RESPONSIVO (CELULARES) --- */
+        /* --- DISEÑO RESPONSIVO (CELULARES) - SIN ALTERAR --- */
         @media (max-width: 768px) {
             .topbar-mobile { display: flex; }
             .app-wrapper { flex-direction: column; }
@@ -140,6 +149,7 @@
             }
             .sidebar.abierto { left: 0; }
             
+            /* Lógica Edge-to-Edge (Queda exactamente igual que antes) */
             .main-content { padding: 20px 0px; }
             .titulo-jornada { font-size: 20px; padding: 0 15px; }
             .layout-columnas { flex-direction: column; gap: 25px; padding: 0; }
@@ -279,7 +289,7 @@
         }
 
         // ==========================================
-        // ENLACES CSV
+        // ENLACES CSV (¡Acordate de poner output=csv!)
         // ==========================================
         const URL_FIXTURE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=390842621&single=true&output=csv";
         const URL_ZONA1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1251464987&single=true&output=csv";
