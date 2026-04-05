@@ -82,8 +82,8 @@
 
         /* GRID DE DOS COLUMNAS */
         .layout-columnas { display: flex; gap: 30px; }
-        .columna-izquierda { flex: 1.2; display: flex; flex-direction: column; gap: 25px; } /* 1.2 le da un poco más de ancho a las posiciones */
-        .columna-derecha { flex: 1.5; display: flex; flex-direction: column; } /* 1.5 hace que el fixture sea más espacioso */
+        .columna-izquierda { flex: 1.2; display: flex; flex-direction: column; gap: 25px; } 
+        .columna-derecha { flex: 1.5; display: flex; flex-direction: column; } 
 
         /* Estilos de las cajas contenedoras */
         .bloque-liga { background-color: #06111d; border-radius: 6px; overflow: hidden; border: 1px solid #1a365d; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
@@ -95,7 +95,7 @@
         .btn-flecha { background: none; border: none; color: white; font-size: 18px; cursor: pointer; font-weight: bold; padding: 0 15px; }
         .btn-flecha:hover { color: #ff8533; }
 
-        /* --- NUEVO: TABLAS NATIVAS UNIFICADAS --- */
+        /* --- TABLAS NATIVAS UNIFICADAS --- */
         .tabla-nativa {
             width: 100%;
             border-collapse: collapse;
@@ -140,13 +140,11 @@
             }
             .sidebar.abierto { left: 0; }
             
-            /* Lógica Edge-to-Edge */
             .main-content { padding: 20px 0px; }
             .titulo-jornada { font-size: 20px; padding: 0 15px; }
             .layout-columnas { flex-direction: column; gap: 25px; padding: 0; }
             .bloque-liga { border-radius: 0; border-left: none; border-right: none; }
             
-            /* Ajuste de fuentes para celular */
             .tabla-nativa { font-size: 12px; }
             .tabla-nativa td { padding: 10px 2px; }
             .caja-resultado { padding: 3px 5px; font-size: 12px; }
@@ -281,15 +279,13 @@
         }
 
         // ==========================================
-        // ENLACES CSV (¡Acordate de poner output=csv!)
+        // ENLACES CSV
         // ==========================================
         const URL_FIXTURE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=390842621&single=true&output=csv";
-        
-        // ¡REEMPLAZÁ ESTOS LINKS POR LOS TUYOS CON OUTPUT=CSV!
         const URL_ZONA1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1251464987&single=true&output=csv";
         const URL_ZONA2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1270812449&single=true&output=csv";
         
-        // --- 1. LÓGICA PARA TABLAS DE POSICIONES ---
+        // --- 1. LÓGICA PARA TABLAS DE POSICIONES (CON COLUMNAS OCULTAS) ---
         async function cargarPosicionesDinamicas(idTabla, urlCSV) {
             try {
                 const res = await fetch(urlCSV);
@@ -299,12 +295,15 @@
                 const filas = csv.split('\n').filter(f => f.trim() !== '');
                 if (filas.length === 0) return;
 
-                // Generar los Títulos (Headers) desde la fila 1
+                // Generar los Títulos (Headers) 
                 const headers = filas[0].split(',');
                 let theadHTML = '<tr>';
                 headers.forEach((h, index) => {
-                    // Si es la columna 1 (generalmente "Equipo"), alinea a la izquierda
-                    let align = (index === 1) ? 'left' : 'center';
+                    // Magia 1: Si es el índice 0 (ID_Equipo), lo salteamos con return
+                    if (index === 0) return; 
+
+                    // Magia 2: Alineamos la columna "Equipo" a la izquierda, el resto al centro
+                    let align = (index === 2) ? 'left' : 'center'; 
                     theadHTML += `<th style="text-align:${align};">${h.replace(/"/g, '').trim()}</th>`;
                 });
                 theadHTML += '</tr>';
@@ -313,12 +312,25 @@
                 let tbodyHTML = '';
                 for(let i=1; i<filas.length; i++) {
                     const cols = filas[i].split(',');
+                    // Por si la fila está vacía o rota
+                    if(cols.length < 3) continue; 
+                    
                     tbodyHTML += '<tr>';
                     cols.forEach((c, index) => {
+                        // Volvemos a saltear el índice 0 (ID_Equipo)
+                        if (index === 0) return; 
+
                         let text = c.replace(/"/g, '').trim();
-                        let align = (index === 1) ? 'left' : 'center';
-                        let weight = (index === 1 || index === 2) ? 'bold' : 'normal'; // Equipo y PTS en negrita
-                        let color = (index === 2) ? '#e05a00' : 'inherit'; // PTS en Naranja
+                        let align = (index === 2) ? 'left' : 'center'; // Equipo a la izquierda
+                        
+                        // Negrita para Posición, Equipo y PTS
+                        let weight = (index === 1 || index === 2 || index === 3) ? 'bold' : 'normal'; 
+                        
+                        let color = 'inherit';
+                        // Detalle estético: El número de posición va en gris, los puntos en naranja
+                        if (index === 1) color = '#8fa6ba';
+                        if (index === 3) color = '#e05a00'; 
+
                         tbodyHTML += `<td style="text-align:${align}; font-weight:${weight}; color:${color};">${text}</td>`;
                     });
                     tbodyHTML += '</tr>';
@@ -402,7 +414,6 @@
                 const resL = (p.golL !== '' && p.golL !== undefined) ? p.golL : '-';
                 const resV = (p.golV !== '' && p.golV !== undefined) ? p.golV : '-';
 
-                // Usamos estructura de tabla (<tr> <td>) para el Fixture Promiedos Style
                 const htmlPartido = `
                     <tr>
                         <td class="col-hora">
