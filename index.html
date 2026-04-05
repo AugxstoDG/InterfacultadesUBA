@@ -139,7 +139,7 @@
             background-color: #06111d; 
             border-radius: 6px;
             margin-bottom: 25px;
-            overflow: hidden; 
+            overflow: hidden;
             border: 1px solid #1a365d;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
@@ -154,7 +154,7 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .iframe-fixture {
             width: calc(100% + 22px) !important; 
             margin-left: 0 !important; 
@@ -392,15 +392,21 @@
             sidebar.classList.toggle('abierto');
         }
 
-        // 2. Lee el Excel de Básquet y arma la tabla Promiedos
+        // 2. Lee el Excel de Básquet de forma segura
         async function cargarBasquet() {
-            // URL con el parámetro output=csv para leer los datos puros
-            const urlBasquet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?output=csv';
+            // URL CORREGIDA: Se agregaron los parámetros "gid=0" y "single=true"
+            // Esto obliga a Google a enviar exclusivamente los datos en formato CSV
+            const urlBasquet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=0&single=true&output=csv';
             
             try {
                 const respuesta = await fetch(urlBasquet);
                 const datosCSV = await respuesta.text();
                 
+                // Filtro de seguridad: Si Google nos devuelve HTML por error, frenamos todo
+                if (datosCSV.includes('<html') || datosCSV.includes('<meta')) {
+                    throw new Error("El servidor devolvió código HTML en lugar de CSV puro.");
+                }
+
                 // Corta el archivo por filas
                 const filas = datosCSV.split('\n');
                 let htmlTabla = '';
@@ -414,14 +420,14 @@
                         const hora = columnas[0].trim();
                         const cancha = columnas[1].trim();
                         const local = columnas[2].trim();
-                        // Asumimos que la columna 3 tiene el "VS", así que el visitante está en la 4
+                        // Asumimos que el visitante está en la columna 4 o 5
                         const visitante = columnas.length > 4 ? columnas[4].trim() : columnas[3].trim();
                         
-                        // Va sumando las filas al HTML
+                        // Va sumando las filas al HTML con el diseño
                         htmlTabla += `
                             <tr>
                                 <td class="col-hora">${hora}</td>
-                                <td class="col-cancha">${cancha}</td>
+                                <td class="col-cancha">C.${cancha}</td>
                                 <td class="col-local">${local}</td>
                                 <td class="col-vs">VS</td>
                                 <td class="col-visitante">${visitante}</td>
@@ -439,7 +445,7 @@
                 document.getElementById('cuerpo-basquet').innerHTML = htmlTabla;
 
             } catch (error) {
-                document.getElementById('cuerpo-basquet').innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px; color: #e74c3c;">Error de conexión. Intente actualizar la página.</td></tr>';
+                document.getElementById('cuerpo-basquet').innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px; color: #e74c3c;">No se pudo conectar con el servidor. Revisar configuración de Google Sheets.</td></tr>';
                 console.error('Error al cargar Excel:', error);
             }
         }
