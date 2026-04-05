@@ -299,11 +299,20 @@
                 if (filas.length === 0) return;
 
                 const headers = filas[0].split(',');
+                let ptsIndex = -1;
+                
                 let theadHTML = '<tr>';
                 headers.forEach((h, index) => {
+                    let titulo = h.replace(/"/g, '').trim();
+                    
+                    // ESCÁNER INTELIGENTE: Detecta si la columna se llama PTS o PUNTOS
+                    if (titulo.toUpperCase() === 'PTS' || titulo.toUpperCase() === 'PUNTOS') {
+                        ptsIndex = index;
+                    }
+                    
                     if (index === 0) return; 
                     let align = (index === 2) ? 'left' : 'center'; 
-                    theadHTML += `<th style="text-align:${align};">${h.replace(/"/g, '').trim()}</th>`;
+                    theadHTML += `<th style="text-align:${align};">${titulo}</th>`;
                 });
                 theadHTML += '</tr>';
 
@@ -318,12 +327,12 @@
 
                         let text = c.replace(/"/g, '').trim();
                         let align = (index === 2) ? 'left' : 'center'; 
-                        let weight = (index === 1 || index === 2 || index === 3) ? 'bold' : 'normal'; 
+                        let weight = (index === 1 || index === 2 || index === ptsIndex) ? 'bold' : 'normal'; 
                         
                         let color = 'inherit';
                         if (index === 1) color = '#8fa6ba';
-                        // 6. COLOR POLVO DE LADRILLO EN LA COLUMNA DE PTS
-                        if (index === 3) color = '#e67e22'; 
+                        // 6. COLOR POLVO DE LADRILLO EN LA COLUMNA DE PTS (INTELIGENTE)
+                        if (index === ptsIndex) color = '#e67e22'; 
 
                         tbodyHTML += `<td style="text-align:${align}; font-weight:${weight}; color:${color};">${text}</td>`;
                     });
@@ -407,10 +416,13 @@
                 const resL = (p.golL !== '' && p.golL !== undefined) ? p.golL : '-';
                 const resV = (p.golV !== '' && p.golV !== undefined) ? p.golV : '-';
                 
+                // 7. LÓGICA DE ZONA CON COLOR POLVO DE LADRILLO
+                const textoZona = p.zona ? `<br><span style="color:#e67e22; font-size:10px; font-weight:bold; text-transform:uppercase;">${p.zona}</span>` : '';
+
                 const htmlPartido = `
                     <tr>
                         <td class="col-hora">
-                            <span style="color:#d1d1d1; font-weight:bold; font-size:13px;">${p.hora}</span>
+                            <span style="color:#d1d1d1; font-weight:bold; font-size:13px;">${p.hora}</span>${textoZona}
                         </td>
                         <td class="col-local">${p.local}</td>
                         <td class="col-resultado">
