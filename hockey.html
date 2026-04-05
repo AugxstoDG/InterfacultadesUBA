@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interfacultades 2026 - Vóley Masculino</title>
+    <title>Interfacultades 2026 - Hockey Femenino</title>
     <style>
         /* --- FONDO GENERAL Y CENTRADO --- */
         body { 
@@ -53,8 +53,8 @@
         .logo { font-size: 22px; font-weight: bold; margin-bottom: 40px; color: #ffffff; text-align: center; letter-spacing: 1px; }
         .menu-item { display: block; padding: 12px 10px; color: #d1d1d1; text-decoration: none; border-bottom: 1px solid #1a365d; font-size: 14px; font-weight: bold; transition: 0.2s; }
         
-        /* 1. HOVER CYAN ELÉCTRICO */
-        .menu-item:hover { color: white; background-color: #1a365d; border-left: 5px solid #00e5ff; }
+        /* 1. HOVER VERDE SINTÉTICO */
+        .menu-item:hover { color: white; background-color: #1a365d; border-left: 5px solid #27ae60; }
         
         .btn-reglamento {
             display: block;
@@ -81,8 +81,8 @@
         }
         .contenedor-central { width: 100%; max-width: 1100px; }
         
-        /* 2. SUBRAYADO DEL TÍTULO EN CYAN ELÉCTRICO */
-        .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #00e5ff; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; }
+        /* 2. SUBRAYADO DEL TÍTULO EN VERDE SINTÉTICO */
+        .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #27ae60; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; }
 
         /* --- GRID DE DOS COLUMNAS --- */
         .layout-columnas { display: flex; gap: 30px; }
@@ -100,13 +100,13 @@
         }
         .titulo-liga { background-color: #1a365d; color: white; padding: 12px 15px; font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
 
-        /* 3. ESTILOS PROMIEDOS PARA FIXTURE (FONDO AZUL TURQUESA PROFUNDO) */
-        .fixture-header { background-color: #0077b6; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #023e8a; } 
+        /* 3. ESTILOS PROMIEDOS PARA FIXTURE (FONDO VERDE PASTO) */
+        .fixture-header { background-color: #27ae60; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #1e8449; } 
         .navegacion-fechas { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 16px; }
         
-        /* 4. HOVER FLECHAS CYAN CLARO */
+        /* 4. HOVER FLECHAS VERDE CLARO */
         .btn-flecha { background: none; border: none; color: white; font-size: 18px; cursor: pointer; font-weight: bold; padding: 0 15px; }
-        .btn-flecha:hover { color: #90e0ef; }
+        .btn-flecha:hover { color: #abebc6; }
 
         /* --- TABLAS NATIVAS UNIFICADAS --- */
         .tabla-nativa {
@@ -191,14 +191,14 @@
             <a href="futsal-masc.html" class="menu-item">👟 Futsal Masculino</a>
             <a href="handball-fem.html" class="menu-item">🤾 Handball Femenino</a>
             <a href="handball-masc.html" class="menu-item">🤾 Handball Masculino</a>
-            <a href="hockey.html" class="menu-item">🏑 Hockey Femenino</a>
+            
+            <a href="hockey.html" class="menu-item" style="color: white; background-color: #1a365d; border-left: 5px solid #27ae60;">🏑 Hockey Femenino</a>
+            
             <a href="tenis-fem.html" class="menu-item">🎾 Tenis Femenino</a>
             <a href="tenis-masc.html" class="menu-item">🎾 Tenis Masculino</a>
             <a href="tenis-de-mesa.html" class="menu-item">🏓 Tenis de Mesa</a>
             <a href="voley-fem.html" class="menu-item">🏐 Vóley Femenino</a>
-            
-            <a href="voley-masc.html" class="menu-item" style="color: white; background-color: #1a365d; border-left: 5px solid #00e5ff;">🏐 Vóley Masculino</a>
-            
+            <a href="voley-masc.html" class="menu-item">🏐 Vóley Masculino</a>
             <a href="planteles.html" class="menu-item">👥 Planteles</a>
 
             <a href="https://drive.google.com/file/d/1oicfA0G09S0a4LDjuYq5drrDAqK6D0nh/view?usp=drive_link" target="_blank" class="btn-reglamento">📄 Ver Reglamento</a>
@@ -207,21 +207,21 @@
         <div class="main-content">
             <div class="contenedor-central">
                 
-                <h1 class="titulo-jornada">Interfacultades 2026 - Vóley Masculino</h1>
+                <h1 class="titulo-jornada">Interfacultades 2026 - Hockey Femenino</h1>
 
                 <div class="layout-columnas">
                     
                     <div class="columna-izquierda">
                         
                         <div class="bloque-liga">
-                            <div class="titulo-liga">📊 ZONA A - POSICIONES</div>
+                            <div class="titulo-liga">📊 DIVISIÓN A - POSICIONES</div>
                             <table class="tabla-nativa" id="tabla-zona1">
                                 <tbody><tr><td style="text-align: center; padding: 20px; color: #8fa6ba;">⏳ Cargando Posiciones...</td></tr></tbody>
                             </table>
                         </div>
 
                         <div class="bloque-liga">
-                            <div class="titulo-liga">📊 ZONA B - POSICIONES</div>
+                            <div class="titulo-liga">📊 DIVISIÓN B - POSICIONES</div>
                             <table class="tabla-nativa" id="tabla-zona2">
                                 <tbody><tr><td style="text-align: center; padding: 20px; color: #8fa6ba;">⏳ Cargando Posiciones...</td></tr></tbody>
                             </table>
@@ -233,7 +233,7 @@
                         
                         <div class="bloque-liga">
                             <div class="fixture-header">
-                                <div>FIXTURE VÓLEY MASCULINO</div>
+                                <div>FIXTURE HOCKEY FEMENINO</div>
                                 <div class="navegacion-fechas">
                                     <button class="btn-flecha" onclick="cambiarFecha('atras')">❮</button>
                                     <span id="titulo-fecha-actual">FECHA 1 ▼</span>
@@ -291,11 +291,11 @@
         }
 
         // ==========================================
-        // LINKS DE GOOGLE SHEETS YA ADAPTADOS A CSV
+        // LINKS DE HOCKEY YA ADAPTADOS A CSV
         // ==========================================
-        const URL_FIXTURE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=644284405&single=true&output=csv";
-        const URL_ZONA1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=7366128&single=true&output=csv";
-        const URL_ZONA2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=168218618&single=true&output=csv";
+        const URL_FIXTURE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=667567562&single=true&output=csv";
+        const URL_ZONA1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1342860981&single=true&output=csv";
+        const URL_ZONA2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1957637222&single=true&output=csv";
         
         async function cargarPosicionesDinamicas(idTabla, urlCSV) {
             try {
@@ -313,7 +313,7 @@
                 headers.forEach((h, index) => {
                     let titulo = h.replace(/"/g, '').trim();
                     
-                    // ESCÁNER INTELIGENTE: Detecta si la columna se llama PTS o PUNTOS
+                    // ESCÁNER INTELIGENTE
                     if (titulo.toUpperCase() === 'PTS' || titulo.toUpperCase() === 'PUNTOS') {
                         ptsIndex = index;
                     }
@@ -339,8 +339,8 @@
                         
                         let color = 'inherit';
                         if (index === 1) color = '#8fa6ba';
-                        // 6. COLOR CYAN ELÉCTRICO EN LA COLUMNA DE PTS (INTELIGENTE)
-                        if (index === ptsIndex) color = '#00e5ff'; 
+                        // 6. COLOR VERDE SINTÉTICO EN LA COLUMNA DE PTS
+                        if (index === ptsIndex) color = '#27ae60'; 
 
                         tbodyHTML += `<td style="text-align:${align}; font-weight:${weight}; color:${color};">${text}</td>`;
                     });
@@ -424,8 +424,8 @@
                 const resL = (p.golL !== '' && p.golL !== undefined) ? p.golL : '-';
                 const resV = (p.golV !== '' && p.golV !== undefined) ? p.golV : '-';
                 
-                // 7. COLOR CYAN ELÉCTRICO EN LA PALABRA ZONA
-                const textoZona = p.zona ? `<br><span style="color:#00e5ff; font-size:10px; font-weight:bold; text-transform:uppercase;">Zona ${p.zona}</span>` : '';
+                // 7. COLOR VERDE SINTÉTICO EN LA PALABRA ZONA
+                const textoZona = p.zona ? `<br><span style="color:#27ae60; font-size:10px; font-weight:bold; text-transform:uppercase;">${p.zona}</span>` : '';
 
                 const htmlPartido = `
                     <tr>
