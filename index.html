@@ -159,6 +159,15 @@
             .layout-columnas {
                 flex-direction: column;
             }
+            /* El footer en celular se apila */
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-map-container {
+                justify-content: center !important;
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
@@ -248,9 +257,10 @@
                 <iframe class="iframe-fixture" style="height: 147px;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pubhtml?gid=1911451396&single=true&single=true&widget=false&headers=false&chrome=false"></iframe>
             </div>
 
-            <footer style="margin-top: 50px; padding: 40px; border-top: 1px solid #1a365d; background-color: #06111d; border-radius: 6px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px;">
+            <footer class="footer-container" style="margin-top: 50px; padding: 40px; border-top: 1px solid #1a365d; background-color: #06111d; border-radius: 6px; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; align-items: center;">
                 
-                <div style="text-align: left; padding-top: 5px;">
+                <div style="flex: 1; min-width: 250px; text-align: left;">
+                    
                     <div style="margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
                         <img src="logo-uba.png" alt="UBA" style="height: 60px;">
                         <div>
@@ -258,23 +268,23 @@
                             <p style="font-size: 13px; color: #8fa6ba; margin: 5px 0 0 0;">Universidad de Buenos Aires - UBA</p>
                         </div>
                     </div>
-                    <div style="display: flex; gap: 20px;">
+                    
+                    <div style="display: flex; gap: 20px; margin-bottom: 25px;">
                         <a href="mailto:interfacultades@uba.ar" style="color: #d1d1d1; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#d1d1d1'">✉️ Contacto</a>
                         <a href="https://instagram.com/ubadeportesoficial" target="_blank" style="color: #d1d1d1; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#d1d1d1'">📸 Instagram</a>
                     </div>
+
+                    <div>
+                        <p style="font-size: 14px; color: #ffffff; margin: 0; font-weight: bold;">📍 Sede Central</p>
+                        <p style="font-size: 13px; color: #8fa6ba; margin: 5px 0 0 0; line-height: 1.5;">Ciudad Universitaria, Campo de Deportes<br>CABA, Buenos Aires</p>
+                    </div>
+
                 </div>
 
-                <div style="text-align: right; display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; justify-content: flex-end;">
-                    <div style="padding-top: 5px;">
-                        <p style="font-size: 15px; color: #ffffff; margin: 0; font-weight: bold;">Sede Central</p>
-                        <p style="font-size: 13px; color: #8fa6ba; margin: 8px 0 0 0; line-height: 1.5;">Ciudad Universitaria,<br>Campo de Deportes<br>CABA, Buenos Aires</p>
-                    </div>
-                    
+                <div class="footer-map-container" style="flex: 1; min-width: 280px; display: flex; justify-content: flex-end;">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6572.933292564416!2d-58.448934955520784!3d-34.5417384669569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb4395d682eff%3A0x95c4a137d8448252!2sUBA%20Deportes!5e0!3m2!1ses!2sar!4v1775392722709!5m2!1ses!2sar" 
-                        width="400" 
-                        height="300" 
-                        style="border: 2px solid #1a365d; border-radius: 8px; max-width: 100%;" 
+                        style="border: 2px solid #1a365d; border-radius: 8px; width: 100%; max-width: 380px; height: 220px;" 
                         allowfullscreen="" 
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade">
