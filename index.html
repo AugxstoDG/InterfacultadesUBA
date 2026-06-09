@@ -416,7 +416,7 @@
             'cuerpo-voley-masc': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1911451396&single=true&output=csv'
         };
 
-        // Función Principal Reutilizable
+        // Función Principal Reutilizable Corregida
         async function cargarDeporte(idContenedor, url) {
             // Si no hay URL configurada, dejamos el mensaje de cargando
             if (!url || url.includes('ACÁ_PEGAR_URL')) {
@@ -438,21 +438,41 @@
                 filas.forEach(fila => {
                     const columnas = fila.split(',');
                     
-                    if (columnas.length >= 4 && columnas[0].trim() !== '') {
-                        const hora = columnas[0].trim();
-                        const cancha = columnas[1].trim();
-                        const local = columnas[2].trim();
-                        const visitante = columnas.length > 4 ? columnas[4].trim() : columnas[3].trim();
-                        
-                        htmlTabla += `
-                            <tr>
-                                <td class="col-hora">${hora}</td>
-                                <td class="col-cancha">C.${cancha}</td>
-                                <td class="col-local">${local}</td>
-                                <td class="col-vs">VS</td>
-                                <td class="col-visitante">${visitante}</td>
-                            </tr>
-                        `;
+                    // Verificamos si la fila tiene datos suficientes
+                    if (columnas.length >= 2) {
+                        const hora = columnas[0] ? columnas[0].trim() : '';
+                        const textoFila = fila.toUpperCase();
+
+                        // CASO 1: Es la fila de LIBRES (La hora está vacía y dice LIBRES en algún lado)
+                        if (hora === '' && textoFila.includes('LIBRES')) {
+                            // Buscamos exactamente qué celda tiene el texto de los libres (por si lo ponés en la col B o C)
+                            const celdaLibres = columnas.find(col => col.toUpperCase().includes('LIBRES')) || 'LIBRES';
+                            
+                            htmlTabla += `
+                                <tr style="background-color: #122336;">
+                                    <td class="col-hora"></td>
+                                    <td colspan="4" style="text-align: left; padding-left: 15px; font-weight: bold; color: #ffffff; font-size: 13px;">
+                                        ${celdaLibres.trim()}
+                                    </td>
+                                </tr>
+                            `;
+                        } 
+                        // CASO 2: Es un partido normal (La hora NO está vacía)
+                        else if (hora !== '' && columnas.length >= 4) {
+                            const cancha = columnas[1] ? columnas[1].trim() : '';
+                            const local = columnas[2] ? columnas[2].trim() : '';
+                            const visitante = columnas.length > 4 ? columnas[4].trim() : columnas[3].trim();
+                            
+                            htmlTabla += `
+                                <tr>
+                                    <td class="col-hora">${hora}</td>
+                                    <td class="col-cancha">C.${cancha}</td>
+                                    <td class="col-local">${local}</td>
+                                    <td class="col-vs">VS</td>
+                                    <td class="col-visitante">${visitante}</td>
+                                </tr>
+                            `;
+                        }
                     }
                 });
 
@@ -467,7 +487,6 @@
                 console.error(`Error en ${idContenedor}:`, error);
             }
         }
-
         // Ejecutar todas las cargas al abrir la página
         document.addEventListener('DOMContentLoaded', () => {
             // Recorre el diccionario de URLs y ejecuta la función para cada deporte
