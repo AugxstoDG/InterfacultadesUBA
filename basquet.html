@@ -9,7 +9,7 @@
         body { 
             margin: 0; 
             font-family: Arial, sans-serif; 
-            background-color: #0a141e; /* Fondo exterior bien oscuro */
+            background-color: #0a141e; 
             color: white; 
             display: flex; 
             justify-content: center; 
@@ -19,7 +19,7 @@
             display: flex;
             width: 100%;
             max-width: 1200px; 
-            background-color: #122336; /* NUEVO: Fondo más claro para generar contraste con las tablas */
+            background-color: #122336; 
             min-height: 100vh;
             position: relative;
             box-shadow: 0 0 20px rgba(0,0,0,0.5); 
@@ -80,25 +80,20 @@
         .contenedor-central { width: 100%; max-width: 1100px; }
         .titulo-jornada { color: #ffffff; font-size: 26px; text-align: center; border-bottom: 3px solid #e05a00; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; text-transform: uppercase; }
 
-        /* --- GRID DE DOS COLUMNAS (DISEÑO PROMIEDOS) --- */
+        /* --- GRID DE DOS COLUMNAS --- */
         .layout-columnas { display: flex; gap: 30px; }
-        
-        /* Posiciones ahora tienen el 60% del ancho */
         .columna-izquierda { flex: 1.6; display: flex; flex-direction: column; gap: 25px; } 
-        /* Fixture ahora tiene el 40% del ancho, más comprimido y elegante */
         .columna-derecha { flex: 1; display: flex; flex-direction: column; } 
 
-        /* Estilos de las cajas contenedoras */
         .bloque-liga { 
-            background-color: #06111d; /* Oscuras para que resalten sobre el fondo gris-azulado */
+            background-color: #06111d; 
             border-radius: 6px; 
             overflow: hidden; 
             border: 1px solid #1a365d; 
-            box-shadow: 0 6px 12px rgba(0,0,0,0.4); /* Sombra un poco más fuerte */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4); 
         }
         .titulo-liga { background-color: #1a365d; color: white; padding: 12px 15px; font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
 
-        /* ESTILOS PROMIEDOS PARA FIXTURE */
         .fixture-header { background-color: #e05a00; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #a34200; } 
         .navegacion-fechas { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 16px; }
         .btn-flecha { background: none; border: none; color: white; font-size: 18px; cursor: pointer; font-weight: bold; padding: 0 15px; }
@@ -119,21 +114,18 @@
             padding: 10px 5px;
             border-bottom: 2px solid #06111d;
         }
-        .tabla-nativa tr {
-            border-bottom: 1px solid #1a365d;
-        }
+        .tabla-nativa tr { border-bottom: 1px solid #1a365d; }
         .tabla-nativa tr:last-child { border-bottom: none; }
         .tabla-nativa tbody tr:nth-child(even) { background-color: #081421; }
         .tabla-nativa td { padding: 12px 5px; vertical-align: middle; }
         
-        /* Ajustes específicos para las columnas del Fixture */
         .col-hora { text-align: center; width: 15%; border-right: 1px solid #1a365d; line-height: 1.3;}
         .col-local { text-align: right; width: 35%; font-weight: bold; padding-right: 15px !important;}
         .col-resultado { text-align: center; width: 15%; }
         .caja-resultado { background-color: #1a365d; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 14px; white-space: nowrap; }
         .col-visitante { text-align: left; width: 35%; font-weight: bold; padding-left: 15px !important;}
 
-        /* --- DISEÑO RESPONSIVO (CELULARES) - SIN ALTERAR --- */
+        /* --- DISEÑO RESPONSIVO (CELULARES) --- */
         @media (max-width: 768px) {
             .topbar-mobile { display: flex; }
             .app-wrapper { flex-direction: column; }
@@ -149,7 +141,6 @@
             }
             .sidebar.abierto { left: 0; }
             
-            /* Lógica Edge-to-Edge (Queda exactamente igual que antes) */
             .main-content { padding: 20px 0px; }
             .titulo-jornada { font-size: 20px; padding: 0 15px; }
             .layout-columnas { flex-direction: column; gap: 25px; padding: 0; }
@@ -198,7 +189,7 @@
             <a href="voley-masc.html" class="menu-item">🏐 Vóley Masculino</a>
             <a href="planteles.html" class="menu-item">👥 Planteles</a>
 
-            <a href="https://drive.google.com/file/d/1oicfA0G09S0a4LDjuYq5drrDAqK6D0nh/view?usp=drive_link" target="_blank" class="btn-reglamento">📄 Ver Reglamento</a>
+            <a href="https://docs.google.com/file/d/1oicfA0G09S0a4LDjuYq5drrDAqK6D0nh/view?usp=drive_link" target="_blank" class="btn-reglamento">📄 Ver Reglamento</a>
         </div>
 
         <div class="main-content">
@@ -271,17 +262,18 @@
                     </div>
 
                     <div class="footer-map-container" style="flex: 1; min-width: 280px; display: flex; justify-content: flex-end;">
-    <iframe 
-        src="https://maps.google.com/maps?q=Facultad+de+Ciencias+Sociales+UBA&hl=es&z=16&output=embed" 
-        style="border: 2px solid #1a365d; border-radius: 8px; width: 100%; max-width: 380px; height: 220px;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-</div>
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Facultad+de+Ciencias+Sociales+UBA&hl=es&z=15&output=embed" 
+                            style="border: 2px solid #1a365d; border-radius: 8px; width: 100%; max-width: 380px; height: 220px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
 
                 </footer>
-                </div>
+
+            </div>
         </div>
     </div>
 
@@ -292,7 +284,7 @@
         }
 
         // ==========================================
-        // ENLACES CSV (¡Acordate de poner output=csv!)
+        // ENLACES CSV
         // ==========================================
         const URL_FIXTURE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=390842621&single=true&output=csv";
         const URL_ZONA1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkIaw1X0O9EhxxijUlmpMcfqeNAd65rBREdsTbkn1I8ZBSY3X3qV_JNoIIyS3Ol-ywQ_-kstUvIrlK/pub?gid=1251464987&single=true&output=csv";
@@ -308,39 +300,29 @@
                 const filas = csv.split('\n').filter(f => f.trim() !== '');
                 if (filas.length === 0) return;
 
-                // Generar los Títulos (Headers) 
                 const headers = filas[0].split(',');
                 let theadHTML = '<tr>';
                 headers.forEach((h, index) => {
-                    // Magia 1: Si es el índice 0 (ID_Equipo), lo salteamos con return
                     if (index === 0) return; 
-
-                    // Magia 2: Alineamos la columna "Equipo" a la izquierda, el resto al centro
                     let align = (index === 2) ? 'left' : 'center'; 
                     theadHTML += `<th style="text-align:${align};">${h.replace(/"/g, '').trim()}</th>`;
                 });
                 theadHTML += '</tr>';
 
-                // Generar el Cuerpo con los datos
                 let tbodyHTML = '';
                 for(let i=1; i<filas.length; i++) {
                     const cols = filas[i].split(',');
-                    // Por si la fila está vacía o rota
                     if(cols.length < 3) continue; 
                     
                     tbodyHTML += '<tr>';
                     cols.forEach((c, index) => {
-                        // Volvemos a saltear el índice 0 (ID_Equipo)
                         if (index === 0) return; 
 
                         let text = c.replace(/"/g, '').trim();
-                        let align = (index === 2) ? 'left' : 'center'; // Equipo a la izquierda
+                        let align = (index === 2) ? 'left' : 'center'; 
                         
-                        // Negrita para Posición, Equipo y PTS
                         let weight = (index === 1 || index === 2 || index === 3) ? 'bold' : 'normal'; 
-                        
                         let color = 'inherit';
-                        // Detalle estético: El número de posición va en gris, los puntos en naranja
                         if (index === 1) color = '#8fa6ba';
                         if (index === 3) color = '#e05a00'; 
 
