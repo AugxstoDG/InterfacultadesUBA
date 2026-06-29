@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfacultades UBA - Ajedrez</title>
+    <style>
+        /* --- FONDO GENERAL Y CENTRADO --- */
+        body { 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+            background-color: #030a11; 
+            color: white; 
+            display: flex; 
+            justify-content: center; 
+        }
+
+        .app-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1200px; 
+            background-color: #0b1a2a; 
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5); 
+        }
+
+        /* --- BARRA SUPERIOR PARA CELULARES --- */
+        .topbar-mobile {
+            display: none; 
+            background-color: #06111d;
+            padding: 15px 20px;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #1a365d;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .topbar-mobile h2 { margin: 0; font-size: 18px; letter-spacing: 1px; color: #ffffff; }
+        .btn-hamburger { background: none; border: none; color: white; font-size: 26px; cursor: pointer; padding: 0; }
+        
+        /* --- MENÚ LATERAL IZQUIERDO --- */
+        .sidebar { 
+            width: 280px; 
+            background-color: #06111d; 
+            padding: 20px; 
+            overflow-y: auto; 
+            border-right: 2px solid #1a365d; 
+            flex-shrink: 0; 
+        }
+        .logo { font-size: 22px; font-weight: bold; margin-bottom: 40px; color: #ffffff; text-align: center; letter-spacing: 1px; }
+        .menu-item { display: block; padding: 12px 10px; color: #d1d1d1; text-decoration: none; border-bottom: 1px solid #1a365d; font-size: 14px; font-weight: bold; transition: 0.2s; }
+        .menu-item:hover { color: white; background-color: #1a365d; border-left: 5px solid #9e2a5b; }
+
+        .btn-reglamento {
+            display: block;
+            background-color: #9e2a5b; 
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .btn-reglamento:hover { background-color: #7a1f45; }
+
+        /* --- CONTENIDO PRINCIPAL (DERECHA) --- */
+        .main-content { 
+            flex: 1; 
+            padding: 40px; 
+            overflow-y: auto; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .contenedor-central { width: 100%; max-width: 833px; }
+
+        .titulo-jornada {
+            color: #ffffff;
+            font-size: 22px;
+            text-align: center;
+            border-bottom: 3px solid #9e2a5b;
+            padding-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .bloque-liga {
+            background-color: #06111d; 
+            border-radius: 6px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 1px solid #1a365d;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        /* --- DISEÑO RESPONSIVO (CELULARES) --- */
+        @media (max-width: 768px) {
+            .topbar-mobile { display: flex; }
+            .app-wrapper { flex-direction: column; }
+            .sidebar {
+                position: fixed; top: 0; left: -320px; height: 100vh;
+                z-index: 2000; transition: left 0.3s ease; box-shadow: 2px 0 15px rgba(0,0,0,0.8);
+            }
+            .sidebar.abierto { left: 0; }
+            .main-content { padding: 20px 0px; }
+            .titulo-jornada { font-size: 18px; padding: 0 15px; }
+            .bloque-liga { border-radius: 0; border-left: none; border-right: none; padding: 40px 15px; }
+            .footer-container { flex-direction: column; text-align: center; padding: 30px 15px; border-radius: 0; }
+            .footer-map-container { justify-content: center !important; margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-wrapper">
+
+        <div class="topbar-mobile">
+            <h2>INTERFACULTADES UBA</h2>
+            <button class="btn-hamburger" onclick="toggleMenu()">☰</button>
+        </div>
+
+        <div class="sidebar">
+            <div class="logo">INTERFACULTADES UBA</div>
+            
+            <a href="index.html" class="menu-item">▶ INICIO</a>
+            <a href="Ajedrez.html" class="menu-item" style="color: white; background-color: #1a365d; border-left: 5px solid #9e2a5b;">♟️ Ajedrez</a>
+            <a href="basquet.html" class="menu-item">🏀 Básquet Masculino</a>
+            <a href="f11.html" class="menu-item">⚽ Fútbol 11</a>
+            <a href="futsal-fem.html" class="menu-item">👟 Futsal Femenino</a>
+            <a href="futsal-masc.html" class="menu-item">👟 Futsal Masculino</a>
+            <a href="handball-fem.html" class="menu-item">🤾 Handball Femenino</a>
+            <a href="handball-masc.html" class="menu-item">🤾 Handball Masculino</a>
+            <a href="hockey.html" class="menu-item">🏑 Hockey Femenino</a>
+            <a href="tenis-fem.html" class="menu-item">🎾 Tenis Femenino</a>
+            <a href="tenis-masc.html" class="menu-item">🎾 Tenis Masculino</a>
+            <a href="tenis-de-mesa.html" class="menu-item">🏓 Tenis de Mesa</a>
+            <a href="voley-fem.html" class="menu-item">🏐 Vóley Femenino</a>
+            <a href="voley-masc.html" class="menu-item">🏐 Vóley Masculino</a>
+            <a href="planteles.html" class="menu-item">👥 Planteles</a>
+            <a href="https://docs.google.com/file/d/1oicfA0G09S0a4LDjuYq5drrDAqK6D0nh/view?usp=drive_link" target="_blank" class="btn-reglamento">📄 Ver Reglamento</a>
+        </div>
+
+        <div class="main-content">
+            <div class="contenedor-central">
+                
+                <h1 class="titulo-jornada">Interfacultades UBA 2026 - Ajedrez</h1>
+
+                <div class="bloque-liga">
+                    <div style="font-size: 60px; margin-bottom: 20px;">♟️</div>
+                    <h2 style="color: #ffffff; margin-bottom: 10px; font-size: 24px;">Información disponible próximamente</h2>
+                    <p style="color: #8fa6ba; font-size: 16px; line-height: 1.5;">Estamos terminando de configurar el formato de competición y el fixture oficial para esta disciplina.</p>
+                </div>
+
+                <footer class="footer-container" style="margin-top: 50px; padding: 40px; border-top: 1px solid #1a365d; background-color: #06111d; border-radius: 6px; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; align-items: center;">
+                    <div style="flex: 1; min-width: 250px; text-align: left;">
+                        <div style="margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
+                            <img src="logo-uba.png" alt="FSOC Deportes" style="height: 60px;">
+                            <div>
+                                <p style="font-size: 15px; color: #ffffff; margin: 0; font-weight: bold;">Coordinación de Deportes Sociales</p>
+                                <p style="font-size: 13px; color: #8fa6ba; margin: 5px 0 0 0;">Facultad de Ciencias Sociales - UBA</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 20px; margin-bottom: 25px;">
+                            <a href="mailto:deportes@sociales.uba.ar" style="color: #d1d1d1; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#d1d1d1'">✉️ Contacto</a>
+                            <a href="https://www.instagram.com/deportessociales/" target="_blank" style="color: #d1d1d1; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#d1d1d1'">📸 Instagram</a>
+                        </div>
+                        <div>
+                            <p style="font-size: 13px; color: #8fa6ba; margin: 5px 0 0 0; line-height: 1.5;">Santiago del Estero 1029<br>CABA, Buenos Aires</p>
+                        </div>
+                    </div>
+                    <div class="footer-map-container" style="flex: 1; min-width: 280px; display: flex; justify-content: flex-end;">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Santiago+del+Estero+1029,+CABA+(Facultad+de+Ciencias+Sociales+-+UBA)&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                            style="border: 2px solid #1a365d; border-radius: 8px; width: 100%; max-width: 380px; height: 220px;" 
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </footer>
+
+            </div> 
+        </div> 
+
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('abierto');
+        }
+    </script>
+</body>
+</html>
